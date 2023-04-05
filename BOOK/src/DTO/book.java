@@ -2,13 +2,13 @@ package DTO;
 
 import java.sql.Date;
 
-public class book {
-	int isbn;
-	String title;
-	String author;
-	String publisher;
-	Date publication_year;
-	String category;
+public class book {				// 도서 테이블
+	int isbn;					// isbn(기본키)
+	String title;				// 도제목
+	String author;				// 저자
+	String publisher;			// 출판사
+	Date publication_year;		// 발행년도
+	String category;			// 카테고리
 
 	public book(int p_isbn, String p_title, String p_author,
 				String p_publisher,	Date p_publication_year, String p_category) {
@@ -24,7 +24,7 @@ public class book {
 		return isbn;
 	}
 
-	public void setNum(int p_isbn) {
+	public void setIsbn(int p_isbn) {
 		this.isbn = p_isbn;
 	}
 	
