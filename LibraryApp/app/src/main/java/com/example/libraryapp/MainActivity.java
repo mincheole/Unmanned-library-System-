@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() { //클릭 리스너
             @Override
             public void onClick(View view) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new Frag_search()).commit();
+                setFrag(3);
             }
         });
 
