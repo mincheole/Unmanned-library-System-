@@ -9,8 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LibraryApp">
+
+<!--        아래 .MainActivity랑 .SplashActivity 위치 교환함-->
         <activity
             android:name=".MainActivity"
+            android:exported="false" />
+
+<!--        SplashActivity에 SplashTheme적용(상단 윈도우바 삭제)-->
+        <activity
+            android:name=".SplashActivity" android:theme="@style/SplashTheme"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
