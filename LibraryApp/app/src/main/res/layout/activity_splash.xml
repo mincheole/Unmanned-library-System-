@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SplashActivity">
+
+<!--    첫 로딩화면(Splash)-->
+    <ImageView
+        android:layout_width="350dp"
+        android:layout_height="320dp"
+        android:layout_gravity="center"
+        android:layout_weight="2"
+        android:src="@drawable/start_title"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Where is the Book"
+        android:textSize="45dp"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:gravity="top|center"
+        android:layout_weight="3"/>
+
+</LinearLayout>

@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="75dp">
 
+<!--        1층 맵 버튼-->
         <Button
             android:id="@+id/first_btn"
             android:layout_width="100dp"
@@ -21,6 +22,7 @@
             android:layout_gravity="bottom"
             android:layout_marginBottom="-3dp"/>
 
+<!--        2층 맵 버튼-->
         <Button
             android:id="@+id/second_btn"
             android:layout_width="100dp"
@@ -33,6 +35,7 @@
             android:layout_gravity="bottom"
             android:layout_marginBottom="-3dp"/>
 
+<!--        3층 맵 버튼-->
         <Button
             android:id="@+id/third_btn"
             android:layout_width="100dp"
@@ -47,10 +50,12 @@
 
     </LinearLayout>
 
+<!--    버튼 클릭시 이미지 변경을 위한 FrameLayout-->
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
+<!--        각 층별 이미지-->
         <ImageView
             android:id="@+id/first_map"
             android:layout_width="wrap_content"
