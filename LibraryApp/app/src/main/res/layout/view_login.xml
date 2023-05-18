@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="80dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:layout_width="250dp"
+                android:layout_height="45dp"/>
+
+            <EditText
+                android:layout_width="250dp"
+                android:layout_height="45dp"/>
+
+        </LinearLayout>
+
+        <!--로그인 버튼-->
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:text="로그인"
+            android:textSize="20dp"
+            android:layout_marginLeft="15dp"
+            android:backgroundTint="#3C66FF"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Where is the Book"
+            android:textSize="45dp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="-25dp"
+            android:gravity="center_horizontal"/>
+
+        <!--    동의대학교 마크 이미지-->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/deu_img_bk"/>
+    </LinearLayout>
+
+    
+</LinearLayout>
