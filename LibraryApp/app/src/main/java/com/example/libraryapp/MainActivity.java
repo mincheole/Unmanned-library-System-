@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private Frag_bookinfo fb; //대여정보 화면 객체 fb
     private Frag_search fs; //검색화면 객체 fs
     private Button btn;//검색창 옆 검색 버튼
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) { //기본 Main 함수

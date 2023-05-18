@@ -4,11 +4,74 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <!--도서관 맵 프래그먼트 레이아웃-->
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="도서관 맵 화면"
-        android:textSize="40sp"/>
+        android:layout_height="75dp">
+
+        <Button
+            android:id="@+id/first_btn"
+            android:layout_width="100dp"
+            android:layout_height="55dp"
+            android:backgroundTint="#724B72FD"
+            android:text="1F"
+            android:textSize="25dp"
+            android:textColor="#000000"
+            android:layout_marginLeft="18dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="-3dp"/>
+
+        <Button
+            android:id="@+id/second_btn"
+            android:layout_width="100dp"
+            android:layout_height="55dp"
+            android:backgroundTint="#724B72FD"
+            android:text="2F"
+            android:textSize="25dp"
+            android:textColor="#000000"
+            android:layout_marginLeft="1dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="-3dp"/>
+
+        <Button
+            android:id="@+id/third_btn"
+            android:layout_width="100dp"
+            android:layout_height="55dp"
+            android:backgroundTint="#724B72FD"
+            android:text="3F"
+            android:textSize="25dp"
+            android:textColor="#000000"
+            android:layout_marginLeft="1dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="-3dp"/>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/first_map"
+            android:layout_width="wrap_content"
+            android:layout_height="540dp"
+            android:src="@drawable/first_floor"/>
+
+        <ImageView
+            android:id="@+id/second_map"
+            android:layout_width="wrap_content"
+            android:layout_height="540dp"
+            android:src="@drawable/second_floor"/>
+
+        <ImageView
+            android:id="@+id/third_map"
+            android:layout_width="wrap_content"
+            android:layout_height="540dp"
+            android:src="@drawable/third_floor"/>
+
+
+    </FrameLayout>
+
+
 
 </LinearLayout>
