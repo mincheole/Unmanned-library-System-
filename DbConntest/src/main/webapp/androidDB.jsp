@@ -14,7 +14,7 @@
 	ResultSet rs = null;
 	byte[ ] imgData = null;
 	Blob image = null;
-	System.out.println("ok1");
+	System.out.println("ok12"); // 머지 테스트
 %>
 <!DOCTYPE html>
 <html>
