@@ -13,6 +13,6 @@
 	</classpathentry>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/user/Desktop/컴공/22-2/데이터베이스/8장.+JAVA/ojdbc8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/Desktop/git local/Where-is-the-book-/DbConntest/ojdbc8.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
