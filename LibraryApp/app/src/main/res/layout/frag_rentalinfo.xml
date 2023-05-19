@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+<!--대여정보 프래그먼트 레이아웃-->
+
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center|top">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="책이름"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:background="@drawable/view_border"/>
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="저자"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:background="@drawable/view_border"/>
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="대출기한"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:background="@drawable/view_border"/>
+
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/rental_List"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/view_border"/>
+
+</FrameLayout>

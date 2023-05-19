@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -20,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentTransaction ft;
     private Frag_home fh; //홈 화면 객체 fh
     private Frag_map fmp; //도서관 맵 화면 객체 fmp
-    private Frag_bookinfo fb; //대여정보 화면 객체 fb
+    private Frag_Rentalinfo fb; //대여정보 화면 객체 fb
     private Frag_search fs; //검색화면 객체 fs
     private Button btn;//검색창 옆 검색 버튼
 
@@ -58,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         });
         fh = new Frag_home();
         fmp = new Frag_map();
-        fb = new Frag_bookinfo();
+        fb = new Frag_Rentalinfo();
         fs = new Frag_search();
         setFrag(0); //시작 fragment 화면 지정
     }
