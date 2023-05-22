@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SearchView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -23,11 +24,15 @@ public class MainActivity extends AppCompatActivity {
     private Frag_search fs; //검색화면 객체 fs
     private Button btn;//검색창 옆 검색 버튼
 
+    private SearchView searchView;  // 검색창
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) { //기본 Main 함수
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        searchView = findViewById(R.id.searchView);
 
         btn = (Button) findViewById(R.id.search_button);//id와 일치하는 버튼 호출
         btn.setOnClickListener(new View.OnClickListener() { //클릭 리스너
@@ -44,12 +49,18 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.action_home: //첫 번째 선택 시 홈 프래그먼트
                         setFrag(0);
+                        searchView.setVisibility(View.VISIBLE);     // 검색창 표시 (메인 레이아웃에서 레이아웃으로 검색창,버튼 묶어서 처리하기)
+                        btn.setVisibility(View.VISIBLE);        // 검색버튼 표시
                         break;
                     case R.id.action_map: //두번째 선택 시 도서관 맵 프래그먼트
                         setFrag(1);
+                        searchView.setVisibility(View.GONE);    // 검색창 삭제
+                        btn.setVisibility(View.GONE);       // 검색버튼 삭제
                         break;
                     case R.id.action_bookinfo: //세번째 선택 시 대여정보 프래그먼트
                         setFrag(2);
+                        searchView.setVisibility(View.GONE);    // 상동
+                        btn.setVisibility(View.GONE);       // 상동
                         break;
                 }
                 return true;
@@ -73,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 ft.commit();
                 break;
             case 1:
+
                 ft.replace(R.id.main_frame, fmp);
                 ft.commit();
                 break;

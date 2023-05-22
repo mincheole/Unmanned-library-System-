@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,27 +18,41 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+<!--            아이디 입력창-->
             <EditText
                 android:layout_width="250dp"
-                android:layout_height="45dp"/>
+                android:layout_height="45dp"
+                android:background="@drawable/view_edge"
+                android:padding="10dp"
+                android:hint="아이디"/>
 
+<!--            비밀번호 입력창-->
             <EditText
                 android:layout_width="250dp"
-                android:layout_height="45dp"/>
+                android:layout_height="45dp"
+                android:background="@drawable/view_edge"
+                android:padding="10dp"
+                android:hint="비밀번호"
+                android:inputType="textPassword"/>
 
         </LinearLayout>
 
         <!--로그인 버튼-->
         <Button
+            android:id="@+id/login_btn"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:text="로그인"
+            android:textColor="#000000"
             android:textSize="20dp"
+            android:textStyle="bold"
             android:layout_marginLeft="15dp"
-            android:backgroundTint="#3C66FF"/>
+            android:layout_marginTop="-5dp"
+            android:backgroundTint="#724B72FD"/>
 
     </LinearLayout>
 
+<!--    타이틀 및 로고-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,19 +62,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Where is the Book"
-            android:textSize="45dp"
+            android:textSize="41dp"
             android:textColor="#000000"
             android:textStyle="bold"
             android:layout_marginTop="60dp"
-            android:layout_marginBottom="-25dp"
             android:gravity="center_horizontal"/>
 
         <!--    동의대학교 마크 이미지-->
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="300dp"
             android:src="@drawable/deu_img_bk"/>
     </LinearLayout>
 
-    
 </LinearLayout>

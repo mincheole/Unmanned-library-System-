@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.libraryapp">
 
     <application
@@ -10,21 +11,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LibraryApp">
 
-<!--        아래 .MainActivity랑 .SplashActivity 위치 교환함-->
+<!--        로그인 액티비티-->
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+
+        <!-- 아래 .MainActivity랑 .SplashActivity 위치 교환함 -->
         <activity
             android:name=".MainActivity"
             android:exported="false" />
 
-<!--        SplashActivity에 SplashTheme적용(상단 윈도우바 삭제)-->
+        <!-- SplashActivity에 SplashTheme적용(상단 윈도우바 삭제) -->
         <activity
-            android:name=".SplashActivity" android:theme="@style/SplashTheme"
-            android:exported="true">
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
