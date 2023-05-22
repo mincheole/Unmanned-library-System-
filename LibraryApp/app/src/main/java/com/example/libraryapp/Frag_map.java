@@ -14,9 +14,9 @@ import androidx.fragment.app.Fragment;
 public class Frag_map extends Fragment implements View.OnClickListener{ //도서관 맵 프래그먼트(버튼 이용을 위해 OnClickListener 인터페이스 이용)
     private View view;
 
-    private Button first_btn, second_btn, third_btn;
+    private Button first_btn, second_btn, third_btn;    // 층별 버튼
 
-    private ImageView first_map, second_map, third_map;
+    private ImageView first_map, second_map, third_map;     // 층별 맵 이미지
 
     @Nullable
     @Override
@@ -33,6 +33,7 @@ public class Frag_map extends Fragment implements View.OnClickListener{ //도서
         second_btn.setOnClickListener(this);
         third_btn.setOnClickListener(this);
 
+        // 층별 맵이미지 id연결
         first_map = view.findViewById(R.id.first_map);
         second_map = view.findViewById(R.id.second_map);
         third_map = view.findViewById(R.id.third_map);

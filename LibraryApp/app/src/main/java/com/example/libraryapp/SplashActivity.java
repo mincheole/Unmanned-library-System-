@@ -21,7 +21,7 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {      // 작업을 전달하는 매개체(중간다리)?
             @Override
             public void run() {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);    // 주석필요!
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);    // 주석필요! 로그인 액티비티로 이동
 
                 startActivity(intent);
 
