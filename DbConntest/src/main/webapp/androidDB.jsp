@@ -6,64 +6,53 @@
 <%@page import="oracle.jdbc.OracleTypes" %>
 <%@page import="java.sql.SQLException" %>
 <%@ page import="java.io.*"%>
+<%@ page import="org.json.simple.*" %>
 <%@page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<!-- import -->
 <%
 	Connection conn = null;
 	CallableStatement cstmt = null;
 	ResultSet rs = null;
 	byte[ ] imgData = null;
 	Blob image = null;
-	System.out.println("ok1");
-%>
+	JSONArray jsonArray = new JSONArray();
+	System.out.println("create obj");
+%> 		<!-- 자바 언어 사용 -->
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>신상명세서 출력 현황</title>
+<title>도서위치추적시스템 DB</title>	<!-- 웹(홈페이지) 이름 -->
 </head>
 <body>
-<center><h2>도서 목록</h2></center>
-<table width="800" border="1" align="center">
-<tr>
-<th>ISBN</th>
-<th>제목</th>
-<th>저자</th>
-<th>출판사</th>
-<th>발행년월</th>
-<th>카테고리</th>
-<th>도서이미지</th>
-<th>도서ID</th>
-</tr>
+<center><h2>도서 목록</h2></center> <!-- 홈페이지 대 제목? -->
+<!-- 자바 언어 사용 -->
 <%
 try{
-	Class.forName("oracle.jdbc.driver.OracleDriver"); //driver
-	System.out.println("ok2");
-	conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "BOOK", "1234"); //username, password는 개인 Oracle 계정의 것으로 하면 됨
-	System.out.println("ok3");
-	cstmt = conn.prepareCall("{call p_search(?,?)}"); //sql문으로 conn
-	cstmt.setString(1, "김");
-	cstmt.registerOutParameter(2, OracleTypes.CURSOR);
-	cstmt.executeQuery(); //pstmt 실행 후 결과를 rs에 할당
-	rs = (ResultSet)cstmt.getObject(2);
+	Class.forName("oracle.jdbc.driver.OracleDriver"); 	// 오라클 드라이버 적재
+	System.out.println("DB Driver On");
+	conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "BOOK", "1234");
+	System.out.println("DB Connecting");				// 도서위치추적시스템 데이터베이스에 연결
+	cstmt = conn.prepareCall("{call p_search(?,?)}"); 	// 검색기능을 가진 프로시저 호출
+	cstmt.setString(1, "");								// ""안의 문자열(검색키워드)이 프로시저의 IN 파라미터로 전달
+	cstmt.registerOutParameter(2, OracleTypes.CURSOR);	// OUT 파라미터로 커서가 반환
+	cstmt.executeQuery(); 								// 프로시저 실행
+	rs = (ResultSet)cstmt.getObject(2);					// 변수 rs에 OUT파라미터인 커서를 반환
 	
-	while(rs.next()){ //조회되는 로우(행) 반복
-		out.print("<tr>");
-		out.print("<td>" + rs.getString(1) + "</td>"); //DB에서 sabun 컬럼에 해당하는 레코드 값을 불러옴
-		out.print("<td>" + rs.getString(2) + "</td>");
-		out.print("<td>" + rs.getString(3) + "</td>");
-		out.print("<td>" + rs.getString(4) + "</td>");
-		out.print("<td>" + rs.getDate(5) + "</td>");
-		out.print("<td>" + rs.getString(6) + "</td>");
-//		out.print("<td>" + rs.getBlob(7) + "</td>");
-		//image = rs.getBlob(7);
-		//imgData = image.getBytes(1,(int)image.length());
-		//out.print("<td>" + imgData + "/td");
-		out.print("<td>" + rs.getString(8) + "</td>");
-		out.print("</tr>");
+	while(rs.next()){ 									//조회되는 커서(행) 반복
+		JSONObject json = new JSONObject();
+		json.put("ISBN",rs.getString(1));
+		json.put("제목",rs.getString(2));
+		json.put("저자",rs.getString(3));
+		json.put("출판사",rs.getString(4));
+		json.put("발행년월",rs.getDate(5));
+		json.put("카테고리",rs.getString(6));
+		json.put("도서ID",rs.getString(8));
+		jsonArray.add(json);
+	
 	}
-	
+	out.println(jsonArray);
 	rs.close();
 	cstmt.close();
 	conn.close();
@@ -79,6 +68,6 @@ try{
 	}
 }
 %>
-</table>
+<!-- 자바 언어 사용 -->
 </body>
 </html>
