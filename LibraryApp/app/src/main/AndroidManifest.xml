@@ -16,6 +16,9 @@
             android:name=".LoginActivity"
             android:exported="false" />
 
+        <activity android:name=".BookInfo"
+            android:exported="false"/>
+
         <!-- 아래 .MainActivity랑 .SplashActivity 위치 교환함 -->
         <activity
             android:name=".MainActivity"

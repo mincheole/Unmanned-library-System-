@@ -1,5 +1,6 @@
 package com.example.libraryapp;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
-
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    private ArrayList<BookData> bookDataArrayList;
+    public class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView ivPicture;
         TextView tvPrice;
 
@@ -20,10 +21,20 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
             super(view);
             ivPicture = view.findViewById(R.id.iv_picture);
             tvPrice = view.findViewById(R.id.tv_title);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int pos = getAdapterPosition();
+                    Intent intent = new Intent(view.getContext(),BookInfo.class);
+                    intent.putExtra("bookData",bookDataArrayList);
+                    intent.putExtra("index",pos);
+                    view.getContext().startActivity(intent);
+                }
+            });
         }
     }
 
-    private ArrayList<BookData> bookDataArrayList;
+
     MyAdapter(ArrayList<BookData> bookDataArrayList){
         this.bookDataArrayList = bookDataArrayList;
     }

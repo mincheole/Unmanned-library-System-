@@ -1,6 +1,8 @@
 package com.example.libraryapp;
 
-public class BookData {
+import java.io.Serializable;
+
+public class BookData implements Serializable {
         public int drawableId;
         public String title;
 
