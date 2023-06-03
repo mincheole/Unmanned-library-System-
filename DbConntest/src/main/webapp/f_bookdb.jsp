@@ -38,7 +38,7 @@ try{
 	cstmt.setString(1, "");								// ""안의 문자열(검색키워드)이 프로시저의 IN 파라미터로 전달
 	cstmt.registerOutParameter(2, OracleTypes.CURSOR);	// OUT 파라미터로 커서가 반환
 	cstmt.executeQuery(); 								// 프로시저 실행
-	rs = (ResultSet)cstmt.getObject(2);					// 변수 rs에 OUT파라미터인 커서를 반환
+	rs = (ResultSet)cstmt.getObject(3);					// 변수 rs에 OUT파라미터인 커서를 반환
 	
 	while(rs.next()){ 									//조회되는 커서(행) 반복
 		JSONObject json = new JSONObject();
