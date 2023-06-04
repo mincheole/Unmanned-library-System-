@@ -6,15 +6,20 @@
 <%@page import="oracle.jdbc.OracleTypes"%>
 <%@page import="java.sql.SQLException"%>
 <%@ page import="java.io.*"%>
+<%@page import="org.json.simple.*" %>
 <%@page language="java" contentType="application/json; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
 Connection conn = null;
 CallableStatement cstmt = null;
+Statement stmt = null;
 ResultSet rs = null;
+//ResultSet rs2 = null;
 int result = 0;
-String userId = "김민철";
+String userId = "mc";
 String userPw = "a001";
+String query = null;
+JSONArray jsonArray = new JSONArray();
 System.out.println("create obj");
 
 userId = request.getParameter("userid");
@@ -30,11 +35,25 @@ try {
 	cstmt.setString(2, userPw);
 	cstmt.registerOutParameter(3, Types.INTEGER);
 	cstmt.executeQuery();
-	//rs = (ResultSet)cstmt.getInt(3);
 	result = cstmt.getInt(3);
-	System.out.println(result);
 	out.println(result);
-
+	/*
+	if (result == 1) {
+		System.out.println(result);
+		out.println(result);
+		query = "select 책제목,대여일,반납일 from v_info where 회원명 =" +"'"+userId+"'";
+		stmt = conn.createStatement();
+		rs = stmt.executeQuery(query);
+		while(rs.next()) {
+			JSONObject json = new JSONObject();
+			json.put("책제목",rs.getString(1));
+			json.put("대여일",rs.getDate(2));
+			json.put("반납일",rs.getDate(3));
+			jsonArray.add(json);
+		}
+		out.println(jsonArray);
+	}
+	*/
 	cstmt.close();
 	conn.close();
 } catch (Exception e) {
