@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--    http 프로토콜 접속 제한 해제 코드(Manifest에서 설정)-->
+<network-security-config>
+    <!--Set application-wide security config using base-config tag.-->
+    <!--<base-config cleartextTrafficPermitted="true"/>-->
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>
