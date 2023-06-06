@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -49,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
                         if(login == 1){
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);    // 로그인 버튼 클릭시 메인 액티비티로 이동(서버랑 통신해야함)
                             startActivity(intent);
-                            finish();
+                            finish();   // 로그인 화면 종료
                         }else{
                             Handler handler = new Handler(Looper.getMainLooper());  // Toast기능 MainActivity 이외에서 사용할 시 Handler 생성 필수!
                             handler.post(new Runnable() {
@@ -70,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private int connect() {     // JSP와 통신 메소드
         StringBuffer buf = new StringBuffer();  // JSP 화면에 뜨는 정보들 저장할 변수
-        String urlPath = "http://112.157.208.197:8080/DbConn1/f_login.jsp?userid=김민철&userpw="+pw;   // id, pw 입력받아야함(한글 X)
+        String urlPath = "http://172.30.1.5:8080/DbConn1/f_login.jsp?userid="+id+"&userpw="+pw;   // id, pw 입력받아야함(한글 X)
         try {
             URL url = new URL(urlPath);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
