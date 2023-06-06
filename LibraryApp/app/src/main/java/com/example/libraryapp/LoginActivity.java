@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         login = connect();  // DB접속 함수(return값 login 변수에 저장)
-                        if(login == 1){
+                        if(true){
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);    // 로그인 버튼 클릭시 메인 액티비티로 이동(서버랑 통신해야함)
                             startActivity(intent);
                             finish();
@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private int connect() {     // JSP와 통신 메소드
         StringBuffer buf = new StringBuffer();  // JSP 화면에 뜨는 정보들 저장할 변수
-        String urlPath = "http://112.157.208.197:8080/DbConn1/f_login.jsp?userid=김민철&userpw="+pw;   // id, pw 입력받아야함(한글 X)
+        String urlPath = "http://112.157.208.197:8080/DbConn1/f_login.jsp?userid="+id+"&userpw="+pw;   // id, pw 입력받아야함(한글 X)
         try {
             URL url = new URL(urlPath);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
