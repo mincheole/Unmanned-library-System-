@@ -19,8 +19,8 @@ public class CustomAdapter extends ArrayAdapter {
 
     class ViewHolder{
         public TextView tv_bookName;
-        public TextView tv_author;
-        public TextView tv_deadLine;
+        public TextView tv_startRental;
+        public TextView tv_endRental;
     }
 
     public CustomAdapter(@NonNull Context context, ArrayList list) {
@@ -41,13 +41,13 @@ public class CustomAdapter extends ArrayAdapter {
 
         viewHolder = new ViewHolder();
         viewHolder.tv_bookName = convertView.findViewById(R.id.bookName);
-        viewHolder.tv_author = convertView.findViewById(R.id.author);
-        viewHolder.tv_deadLine = convertView.findViewById(R.id.deadLine);
+        viewHolder.tv_startRental = convertView.findViewById(R.id.statRental);
+        viewHolder.tv_endRental = convertView.findViewById(R.id.endRental);
 
         final rentalData rentalData = (rentalData) list.get(position);
         viewHolder.tv_bookName.setText(rentalData.getBookName());
-        viewHolder.tv_author.setText(rentalData.getAuthor());
-        viewHolder.tv_deadLine.setText(rentalData.getDeadLine());
+        viewHolder.tv_startRental.setText(rentalData.getstartRental());
+        viewHolder.tv_endRental.setText(rentalData.getendRental());
 
         return convertView;
     }

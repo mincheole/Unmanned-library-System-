@@ -20,13 +20,12 @@
             android:text="책이름"
             android:textColor="#000000"
             android:textSize="30sp"/>
-<!--            android:background="@drawable/view_border"-->
 
         <TextView
             android:layout_width="110dp"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="저자"
+            android:text="대여일"
             android:textColor="#000000"
             android:textSize="30sp" />
 
@@ -34,7 +33,7 @@
             android:layout_width="130dp"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="대출기한"
+            android:text="반납일"
             android:textColor="#000000"
             android:textSize="30sp" />
 
