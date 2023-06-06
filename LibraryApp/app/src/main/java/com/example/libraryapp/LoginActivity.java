@@ -72,7 +72,6 @@ public class LoginActivity extends AppCompatActivity {
 
     protected String connect(int jspOption) {     // JSP와 통신 메소드
         StringBuffer buf = new StringBuffer();  // JSP 화면에 뜨는 정보들 저장할 변수
-
         String urlPath = null;    // id, pw 입력받아야함(한글 X)
 
         switch (jspOption) {     // 로그인 화면이랑 대여정보 화면에서 connect() 메소드를 사용하기 위함(1일때 로그인, 2일때 대여정보)
@@ -83,7 +82,6 @@ public class LoginActivity extends AppCompatActivity {
                 urlPath = "http://112.157.208.197:8080/DbConn1/f_userinfo.jsp?userid="+id;
                 break;
         }
-
         try {
             URL url = new URL(urlPath);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
