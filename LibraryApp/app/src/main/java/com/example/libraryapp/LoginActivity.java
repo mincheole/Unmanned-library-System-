@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private Button login_btn;   // 로그인 버튼
     private EditText et_id, et_pw;
-    private String id, pw;
+    protected String id, pw;
     private String login;      // 로그인 성공여부 판별 변수
 
 
@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 id = et_id.getText().toString();    // 사용자가 입력한 id값 저장
                 pw = et_pw.getText().toString();    // 사용자가 입력한 pw값 저장
-
+                Frag_Rentalinfo.ID = id;
 
                 Thread t1 = new Thread(new Runnable() {     // 로그인 기능은 메인 쓰레드에서 불가능(새로운 쓰레드 생성)
                     @Override
@@ -68,6 +68,7 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
     protected String connect(int jspOption) {     // JSP와 통신 메소드
