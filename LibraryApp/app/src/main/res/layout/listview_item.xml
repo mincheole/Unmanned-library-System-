@@ -20,18 +20,18 @@
             android:gravity="center"/>
 
         <TextView
-            android:id="@+id/author"
+            android:id="@+id/statRental"
             android:layout_width="110dp"
             android:layout_height="match_parent"
-            android:text="저자"
+            android:text="대여일"
             android:textSize="20dp"
             android:gravity="center"/>
 
         <TextView
-            android:id="@+id/deadLine"
+            android:id="@+id/endRental"
             android:layout_width="130dp"
             android:layout_height="match_parent"
-            android:text="대출기한"
+            android:text="반납일"
             android:textSize="20dp"
             android:gravity="center"/>
 
