@@ -1,6 +1,8 @@
 package com.example.libraryapp;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +11,11 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.ByteArrayOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
+public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private ArrayList<BookData> bookDataArrayList;
     public class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView ivPicture;
@@ -26,8 +30,20 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
                 public void onClick(View view) {
                     int pos = getAdapterPosition();
                     Intent intent = new Intent(view.getContext(),BookInfo.class);
-                    intent.putExtra("bookData",bookDataArrayList);
-                    intent.putExtra("index",pos);
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    Bitmap bitmap = ((BitmapDrawable)ivPicture.getDrawable()).getBitmap();
+                    float scale = (float) (1024/(float)bitmap.getWidth());
+                    int image_w = (int) (bitmap.getWidth() * scale);
+                    int image_h = (int) (bitmap.getHeight() * scale);
+                    Bitmap resize = Bitmap.createScaledBitmap(bitmap, image_w, image_h, true);
+                    resize.compress(Bitmap.CompressFormat.JPEG, 50, stream);
+                    byte[] byteArray = stream.toByteArray();
+                    intent.putExtra("bookimage",byteArray);
+                    intent.putExtra("title",bookDataArrayList.get(pos).title);
+                    intent.putExtra("author",bookDataArrayList.get(pos).author);
+                    intent.putExtra("publisher",bookDataArrayList.get(pos).publisher);
+                    intent.putExtra("location",bookDataArrayList.get(pos).location);
+                    intent.putExtra("summary",bookDataArrayList.get(pos).summary);
                     view.getContext().startActivity(intent);
                 }
             });
@@ -52,7 +68,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
 
         MyViewHolder myViewHolder = (MyViewHolder) holder;
 
-        myViewHolder.ivPicture.setImageResource(bookDataArrayList.get(position).drawableId);
+        myViewHolder.ivPicture.setImageBitmap(bookDataArrayList.get(position).drawableId);
         myViewHolder.tvPrice.setText(bookDataArrayList.get(position).title);
     }
 

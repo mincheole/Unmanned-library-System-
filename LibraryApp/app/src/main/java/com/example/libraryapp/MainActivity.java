@@ -5,13 +5,32 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,6 +42,13 @@ public class MainActivity extends AppCompatActivity {
     private Frag_Rentalinfo fb; //대여정보 화면 객체 fb
     private Frag_search fs; //검색화면 객체 fs
     private Button btn;//검색창 옆 검색 버튼
+    private String jdata;
+    private JSONArray jsonArray;
+    private String imageUrl;
+    private String tm;
+    private Bitmap mybitmap;
+    private BookInfo bi;
+    ArrayList<BookData> bookDataArrayList;
 
     private SearchView searchView;  // 검색창
 
@@ -38,9 +64,14 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() { //클릭 리스너
             @Override
             public void onClick(View view) {
-                setFrag(3);
+                if(t1.getState()==Thread.State.NEW){
+                    bookDataArrayList = new ArrayList<>();
+                    t1.start();
+                }
             }
         });
+
+
 
         bottomNavigationView = findViewById(R.id.bottomNavi); //하단 바 (하단 네비게이션 바)
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -97,5 +128,79 @@ public class MainActivity extends AppCompatActivity {
                 ft.commit();
                 break;
         }
+    }
+
+    Thread t1 = new Thread(new Runnable() {     // 로그인 기능은 메인 쓰레드에서 불가능(새로운 쓰레드 생성)
+        @Override
+        public void run() {
+            jdata = connect();  // DB접속 함수(return값 login 변수에 저장)
+            if(jdata.equals("실패")){
+                //Toast.makeText(getActivity(), "책정보 로딩 실패", Toast.LENGTH_SHORT).show();
+            }else{//성공 시
+                try {
+                    jsonArray = new JSONArray(jdata);
+                    for(int i=0; i<jsonArray.length(); i++){
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        imageUrl = jsonObject.getString("도서이미지");
+                        tm = jsonObject.getString("제목");
+                        String author = jsonObject.getString("저자");
+                        String publisher = jsonObject.getString("출판사");
+                        String location = jsonObject.getString("층") +"층 "+ jsonObject.getString("줄") +"줄 "+ jsonObject.getString("칸")+"칸";
+                        String summary = jsonObject.getString("도서소개");
+                        URL url1 = new URL(imageUrl);
+                        HttpURLConnection conn = (HttpURLConnection)url1.openConnection();
+                        conn.setDoInput(true); // 서버로부터 응답 수신
+                        conn.connect(); //연결된 곳에 접속할 때 (connect() 호출해야 실제 통신 가능함)
+                        InputStream is = conn.getInputStream(); //inputStream 값 가져오기
+                        mybitmap = BitmapFactory.decodeStream(is);
+                        bookDataArrayList.add(new BookData(mybitmap,tm,author,publisher,location,summary));
+                    }
+                    fs.setData(bookDataArrayList);
+                    setFrag(3);
+
+                } catch (JSONException | MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (NullPointerException e){
+                    e.printStackTrace();
+                }
+            }
+
+        }
+    });
+
+    private String connect() {     // JSP와 통신 메소드
+        StringBuffer buf = new StringBuffer();  // JSP 화면에 뜨는 정보들 저장할 변수
+        String urlPath = "http://112.157.208.197:8080/DbConn1/f_bookdb.jsp";   // id, pw 입력받아야함(한글 X)
+        try {
+            URL url = new URL(urlPath);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            if(con != null){
+                con.setRequestMethod("POST");    // GET 또는 POST
+                con.setDoInput(true);
+                con.setDoOutput(true);
+                int code = con.getResponseCode();   // CODE가 200이면 접속성공(단지 사이트 접속여부, 로그인여부X)
+                Log.i("mytag", "RESOPNSE_CODE"+code);   // 로그에서 코드 실행결과(사이트 접속시 code200) 확인코드
+
+                InputStream input = con.getInputStream();   // 검색필요
+                BufferedReader reader = new BufferedReader(new InputStreamReader(input));   // 검색필요
+
+                String str = reader.readLine();
+                while(str!=null){
+                    buf.append(str);
+                    str = reader.readLine();
+                }
+
+                reader.close();
+            }
+            con.disconnect();
+            Log.i("mytag", "buf "+ buf.toString());     // 로그에서 코드 실행결과(buf값) 확인코드
+            return buf.toString();    // buf를 int 타입으로 변경(1을 리턴하기 위해)
+
+        }catch (Exception e){
+            Log.i("mytag", e.getLocalizedMessage());    // 로그에서 코드 실행결과 확인코드
+        }
+        return "실패";
     }
 }
