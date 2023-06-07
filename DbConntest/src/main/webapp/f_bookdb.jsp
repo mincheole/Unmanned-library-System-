@@ -8,6 +8,7 @@
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.io.*"%>
 <%@page import="org.json.simple.*" %>
+<%@page import="java.util.Base64"%>
 <%@page language="java" contentType="application/json; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -17,14 +18,17 @@
 	ResultSet rs = null;
 	JSONArray jsonArray = new JSONArray();
 	System.out.println("Create bookdb obj");
+
 	String keyword = request.getParameter("keyword");
 	String mode = request.getParameter("mode");
 	//String mode = "1";
+
 
 try{
 	Class.forName("oracle.jdbc.driver.OracleDriver"); 	// 오라클 드라이버 적재
 	System.out.println("DB Driver On");
 	conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "BOOKDB", "1234");
+
 	System.out.println("DB Connecting");			// 도서위치추적시스템 데이터베이스에 연결
 	if (mode.equals("1")){
 		cstmt = conn.prepareCall("{call p_search2(?,?)}"); 	// 검색기능을 가진 프로시저 호출
