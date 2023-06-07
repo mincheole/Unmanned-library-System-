@@ -2,6 +2,7 @@
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.CallableStatement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="oracle.jdbc.OracleTypes"%>
 <%@page import="java.sql.SQLException"%>
