@@ -65,7 +65,6 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-
         MyViewHolder myViewHolder = (MyViewHolder) holder;
 
         myViewHolder.ivPicture.setImageBitmap(bookDataArrayList.get(position).drawableId);

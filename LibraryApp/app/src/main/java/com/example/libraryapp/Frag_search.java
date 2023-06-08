@@ -60,6 +60,7 @@ public class Frag_search extends Fragment { //검색화면 프래그먼트
             t1.interrupt();
         }
         t1.start();*/
+
         view = inflater.inflate(R.layout.frag_search, container, false); //레이아웃 inflate로 객체화
         mRecyclerView = view.findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
@@ -75,7 +76,6 @@ public class Frag_search extends Fragment { //검색화면 프래그먼트
         foodInfoArrayList.add(new BookData(R.drawable.img_5, "고래"));
         foodInfoArrayList.add(new BookData(R.drawable.img_6, "품"));
         */
-
         MyAdapter myAdapter = new MyAdapter(foodInfoArrayList);
 
         mRecyclerView.setAdapter(myAdapter);

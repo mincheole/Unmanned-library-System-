@@ -77,10 +77,10 @@ public class LoginActivity extends AppCompatActivity {
 
         switch (jspOption) {     // 로그인 화면이랑 대여정보 화면에서 connect() 메소드를 사용하기 위함(1일때 로그인, 2일때 대여정보)
             case 1:
-                urlPath = "http://112.157.208.197:8080/DbConn1/f_login.jsp?userid=" + id + "&userpw=" + pw;
+                urlPath = "http://172.20.10.5:8080/DbConn1/f_login.jsp?userid=" + id + "&userpw=" + pw;
                 break;
             case 2:
-                urlPath = "http://112.157.208.197:8080/DbConn1/f_userinfo.jsp?userid="+id;
+                urlPath = "http://172.20.10.5:8080/DbConn1/f_userinfo.jsp?userid="+id;
                 break;
         }
         try {
