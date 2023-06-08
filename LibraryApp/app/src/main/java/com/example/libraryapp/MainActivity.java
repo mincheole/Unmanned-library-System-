@@ -54,9 +54,11 @@ public class MainActivity extends AppCompatActivity {
     private BookInfo bi;
     private String[] items = {"제목","저자"};
     private String text,mode;
+    private String location;
     ArrayList<BookData> bookDataArrayList;
 
     private EditText searchView;
+
 
 
     @Override
@@ -91,10 +93,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 text = searchView.getText().toString();
-                if(t1.getState()==Thread.State.NEW){
-                    bookDataArrayList = new ArrayList<>();
-                    t1.start();
-                }
+                bookDataArrayList = new ArrayList<>();
+                new t1().start();
             }
         });
 
@@ -108,17 +108,20 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.action_home: //첫 번째 선택 시 홈 프래그먼트
                         setFrag(0);
                         searchView.setVisibility(View.VISIBLE);     // 검색창 표시 (메인 레이아웃에서 레이아웃으로 검색창,버튼 묶어서 처리하기)
-                        btn.setVisibility(View.VISIBLE);        // 검색버튼 표시
+                        btn.setVisibility(View.VISIBLE);
+                        spinner.setVisibility(View.VISIBLE);// 검색버튼 표시
                         break;
                     case R.id.action_map: //두번째 선택 시 도서관 맵 프래그먼트
                         setFrag(1);
                         searchView.setVisibility(View.GONE);    // 검색창 삭제
-                        btn.setVisibility(View.GONE);       // 검색버튼 삭제
+                        btn.setVisibility(View.GONE);
+                        spinner.setVisibility(View.VISIBLE);// 검색버튼 삭제
                         break;
                     case R.id.action_bookinfo: //세번째 선택 시 대여정보 프래그먼트
                         setFrag(2);
                         searchView.setVisibility(View.GONE);    // 상동
-                        btn.setVisibility(View.GONE);       // 상동
+                        btn.setVisibility(View.GONE);
+                        spinner.setVisibility(View.VISIBLE);// 상동
                         break;
                 }
                 return true;
@@ -157,8 +160,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    Thread t1 = new Thread(new Runnable() {     // 로그인 기능은 메인 쓰레드에서 불가능(새로운 쓰레드 생성)
-        @Override
+    class t1 extends Thread{
         public void run() {
             jdata = connect();  // DB접속 함수(return값 login 변수에 저장)
             if(jdata.equals("실패")){
@@ -172,7 +174,12 @@ public class MainActivity extends AppCompatActivity {
                         tm = jsonObject.getString("제목");
                         String author = jsonObject.getString("저자");
                         String publisher = jsonObject.getString("출판사");
-                        String location = jsonObject.getString("층") +"층 "+ jsonObject.getString("줄") +"줄 "+ jsonObject.getString("칸")+"칸";
+                        if(jsonObject.getString("층").equals("0")){
+                            location = "대여중";
+                        }
+                        else{
+                            location = jsonObject.getString("층") +"층 "+ jsonObject.getString("줄") +"줄 "+ jsonObject.getString("칸")+"칸";
+                        }
                         String summary = jsonObject.getString("도서소개");
                         URL url1 = new URL(imageUrl);
                         HttpURLConnection conn = (HttpURLConnection)url1.openConnection();
@@ -195,11 +202,11 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }
-    });
+    }
 
     private String connect() {     // JSP와 통신 메소드
         StringBuffer buf = new StringBuffer();  // JSP 화면에 뜨는 정보들 저장할 변수
-        String urlPath = "http://112.157.208.197:8080/DbConn1/f_bookdb.jsp?keyword=" + text + "&mode=" + mode;   // id, pw 입력받아야함(한글 X)
+        String urlPath = "http://172.20.10.5:8080/DbConn1/f_bookdb.jsp?keyword=" + text + "&mode=" + mode;   // id, pw 입력받아야함(한글 X)
         try {
             URL url = new URL(urlPath);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
