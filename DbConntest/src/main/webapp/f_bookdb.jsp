@@ -15,6 +15,7 @@
 <%
 	Connection conn = null;
 	CallableStatement cstmt = null;
+	CallableStatement cstmt1 = null;
 	ResultSet rs =null;
 	ResultSet rs1 = null;
 	JSONArray jsonArray = new JSONArray();
@@ -22,8 +23,8 @@
 
 	String keyword = request.getParameter("keyword");
 	String mode = request.getParameter("mode");
-	mode = "1";
-	keyword ="";
+	//mode = "1";
+	//keyword ="";
 
 
 try{
@@ -33,9 +34,9 @@ try{
 
 	System.out.println("DB Connecting");			// 도서위치추적시스템 데이터베이스에 연결
 	if (mode.equals("1")){
-		cstmt = conn.prepareCall("{call p_search2(?,?)}"); 	// 검색기능을 가진 프로시저 호출
+		cstmt = conn.prepareCall("{call p_search1(?,?)}"); 	// 검색기능을 가진 프로시저 호출
 	} else if(mode.equals("2")){
-		cstmt = conn.prepareCall("{call p_search3(?,?)}"); 	// 검색기능을 가진 프로시저 호출
+		cstmt = conn.prepareCall("{call p_search2(?,?)}"); 	// 검색기능을 가진 프로시저 호출
 	}
 	cstmt.setString(1, keyword);								// ""안의 문자열(검색키워드)이 프로시저의 IN 파라미터로 전달
 	cstmt.registerOutParameter(2, OracleTypes.CURSOR);	// OUT 파라미터로 커서가 반환
