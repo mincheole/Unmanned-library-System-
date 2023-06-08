@@ -13,8 +13,12 @@ import android.os.Looper;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.SearchView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -48,9 +52,11 @@ public class MainActivity extends AppCompatActivity {
     private String tm;
     private Bitmap mybitmap;
     private BookInfo bi;
+    private String[] items = {"제목","저자"};
+    private String text,mode;
     ArrayList<BookData> bookDataArrayList;
 
-    private SearchView searchView;  // 검색창
+    private EditText searchView;
 
 
     @Override
@@ -59,11 +65,32 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         searchView = findViewById(R.id.searchView);
+        Spinner spinner = findViewById(R.id.Search_spinner);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, androidx.constraintlayout.widget.R.layout.support_simple_spinner_dropdown_item,items);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (items[i].equals("제목")){
+                    mode = "1";
+                }
+                else{
+                    mode = "2";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                mode = "1";
+            }
+        });
 
         btn = (Button) findViewById(R.id.search_button);//id와 일치하는 버튼 호출
         btn.setOnClickListener(new View.OnClickListener() { //클릭 리스너
             @Override
             public void onClick(View view) {
+                text = searchView.getText().toString();
                 if(t1.getState()==Thread.State.NEW){
                     bookDataArrayList = new ArrayList<>();
                     t1.start();
@@ -172,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String connect() {     // JSP와 통신 메소드
         StringBuffer buf = new StringBuffer();  // JSP 화면에 뜨는 정보들 저장할 변수
-        String urlPath = "http://112.157.208.197:8080/DbConn1/f_bookdb.jsp";   // id, pw 입력받아야함(한글 X)
+        String urlPath = "http://112.157.208.197:8080/DbConn1/f_bookdb.jsp?keyword=" + text + "&mode=" + mode;   // id, pw 입력받아야함(한글 X)
         try {
             URL url = new URL(urlPath);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
