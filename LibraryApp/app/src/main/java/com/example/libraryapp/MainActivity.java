@@ -115,13 +115,13 @@ public class MainActivity extends AppCompatActivity {
                         setFrag(1);
                         searchView.setVisibility(View.GONE);    // 검색창 삭제
                         btn.setVisibility(View.GONE);
-                        spinner.setVisibility(View.VISIBLE);// 검색버튼 삭제
+                        spinner.setVisibility(View.GONE);// 검색버튼 삭제
                         break;
                     case R.id.action_bookinfo: //세번째 선택 시 대여정보 프래그먼트
                         setFrag(2);
                         searchView.setVisibility(View.GONE);    // 상동
                         btn.setVisibility(View.GONE);
-                        spinner.setVisibility(View.VISIBLE);// 상동
+                        spinner.setVisibility(View.GONE);// 상동
                         break;
                 }
                 return true;
@@ -206,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String connect() {     // JSP와 통신 메소드
         StringBuffer buf = new StringBuffer();  // JSP 화면에 뜨는 정보들 저장할 변수
-        String urlPath = "http://172.20.10.5:8080/DbConn1/f_bookdb.jsp?keyword=" + text + "&mode=" + mode;   // 제목,저자 입력받아야함(한글 X)
+        String urlPath = "http://whereisthebook.kro.kr:8080/DbConn1/f_bookdb.jsp?keyword=" + text + "&mode=" + mode;   // 제목,저자 입력받아야함(한글 X)
         try {
             URL url = new URL(urlPath);//Jsp 경로를 변수에 저장
             HttpURLConnection con = (HttpURLConnection) url.openConnection();//안드로이드 Http 통신으로 연결
