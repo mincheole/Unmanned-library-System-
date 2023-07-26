@@ -50,9 +50,9 @@
 
     <Spinner
         android:id="@+id/Search_spinner"
-        android:layout_width="93dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="103dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/main_frame"
