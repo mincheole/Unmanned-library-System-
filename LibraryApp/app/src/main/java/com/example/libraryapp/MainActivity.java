@@ -181,20 +181,18 @@ public class MainActivity extends AppCompatActivity {
                             location = jsonObject.getString("층") +"층 "+ jsonObject.getString("줄") +"줄 "+ jsonObject.getString("칸")+"칸";
                         }
                         String summary = jsonObject.getString("도서소개");//책 소개 저장
-                        URL url1 = new URL(imageUrl);
+                        /*URL url1 = new URL(imageUrl);
                         HttpURLConnection conn = (HttpURLConnection)url1.openConnection();//책 URL로 Http 통신
                         conn.setDoInput(true); // 서버로부터 응답 수신
                         conn.connect(); //연결된 곳에 접속할 때 (connect() 호출해야 실제 통신 가능함)
                         InputStream is = conn.getInputStream(); //inputStream 값 가져오기
-                        mybitmap = BitmapFactory.decodeStream(is);//이미지 Stream을 비트맵으로 저장
-                        bookDataArrayList.add(new BookData(mybitmap,tm,author,publisher,location,summary));//값들을 List에 저장
+                        mybitmap = BitmapFactory.decodeStream(is);//이미지 Stream을 비트맵으로 저장*/
+                        bookDataArrayList.add(new BookData(imageUrl,tm,author,publisher,location,summary));//값들을 List에 저장
                     }
                     fs.setData(bookDataArrayList);//검색화면으로 데이터 List를 전달
                     setFrag(3);//App Ui 화면 전환
 
-                } catch (JSONException | MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
+                } catch (JSONException e) {
                     e.printStackTrace();
                 } catch (NullPointerException e){
                     e.printStackTrace();
