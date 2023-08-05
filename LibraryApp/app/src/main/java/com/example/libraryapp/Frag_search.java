@@ -56,10 +56,6 @@ public class Frag_search extends Fragment { //검색화면 프래그먼트
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        /*if(t1.isAlive()){
-            t1.interrupt();
-        }
-        t1.start();*/
 
         view = inflater.inflate(R.layout.frag_search, container, false); //레이아웃 inflate로 객체화
         mRecyclerView = view.findViewById(R.id.recycler_view);
@@ -67,18 +63,9 @@ public class Frag_search extends Fragment { //검색화면 프래그먼트
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        /*
-        foodInfoArrayList.add(new BookData(R.drawable.img, "달러구트 꿈 백화점"));
-        foodInfoArrayList.add(new BookData(R.drawable.img_1, "돌이킬 수 없는 약속"));
-        foodInfoArrayList.add(new BookData(R.drawable.img_2, "순리자"));
-        foodInfoArrayList.add(new BookData(R.drawable.img_3, "팩트풀니스"));
-        foodInfoArrayList.add(new BookData(R.drawable.img_4, "도둑맞은 집중력\n"));
-        foodInfoArrayList.add(new BookData(R.drawable.img_5, "고래"));
-        foodInfoArrayList.add(new BookData(R.drawable.img_6, "품"));
-        */
         MyAdapter myAdapter = new MyAdapter(foodInfoArrayList);
-
         mRecyclerView.setAdapter(myAdapter);
+        myAdapter.notifyDataSetChanged();
 
         return view;
     }

@@ -2,6 +2,7 @@ package com.example.libraryapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -41,10 +42,12 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView; //하단 바
     private FragmentManager fm;
     private FragmentTransaction ft;
+    private int SearchCount = 0; //검색 객체 구분 변수
     private Frag_home fh; //홈 화면 객체 fh
     private Frag_map fmp; //도서관 맵 화면 객체 fmp
     private Frag_Rentalinfo fb; //대여정보 화면 객체 fb
     private Frag_search fs; //검색화면 객체 fs
+    private Frag_search fs2;//교체용 검색화면 객체
     private Button btn;//검색창 옆 검색 버튼
     private String jdata;
     private JSONArray jsonArray;
@@ -131,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
         fmp = new Frag_map();
         fb = new Frag_Rentalinfo();
         fs = new Frag_search();
+        fs2 = new Frag_search();
         setFrag(0); //시작 fragment 화면 지정
     }
 
@@ -154,7 +158,15 @@ public class MainActivity extends AppCompatActivity {
                 ft.commit();
                 break;
             case 3:
-                ft.replace(R.id.main_frame, fs);
+                if(SearchCount == 1){
+                    System.out.println("현재 서치프래그먼트");
+                    ft.replace(R.id.main_frame, fs2);
+                    SearchCount--;
+                }
+                else{
+                    ft.replace(R.id.main_frame, fs);
+                    SearchCount++;
+                }
                 ft.commit();
                 break;
         }
@@ -190,11 +202,10 @@ public class MainActivity extends AppCompatActivity {
                         bookDataArrayList.add(new BookData(imageUrl,tm,author,publisher,location,summary));//값들을 List에 저장
                     }
                     fs.setData(bookDataArrayList);//검색화면으로 데이터 List를 전달
+                    fs2.setData(bookDataArrayList);
                     setFrag(3);//App Ui 화면 전환
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                } catch (NullPointerException e){
+                } catch (JSONException | NullPointerException e) {
                     e.printStackTrace();
                 }
             }
