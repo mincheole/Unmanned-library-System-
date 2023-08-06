@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private Frag_Rentalinfo fb; //대여정보 화면 객체 fb
     private Frag_search fs; //검색화면 객체 fs
     private Frag_search fs2;//교체용 검색화면 객체
+    private Frag_loan fl;
     private Button btn;//검색창 옆 검색 버튼
     private String jdata;
     private JSONArray jsonArray;
@@ -126,6 +127,12 @@ public class MainActivity extends AppCompatActivity {
                         btn.setVisibility(View.GONE);
                         spinner.setVisibility(View.GONE);// 상동
                         break;
+                    case R.id.action_scan: //네번째 선택 시 대출반납 프래그먼트
+                        setFrag(4);
+                        searchView.setVisibility(View.GONE);    // 상동
+                        btn.setVisibility(View.GONE);
+                        spinner.setVisibility(View.GONE);// 상동
+                        break;
                 }
                 return true;
             }
@@ -135,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
         fb = new Frag_Rentalinfo();
         fs = new Frag_search();
         fs2 = new Frag_search();
+        fl = new Frag_loan();
         setFrag(0); //시작 fragment 화면 지정
     }
 
@@ -149,7 +157,6 @@ public class MainActivity extends AppCompatActivity {
                 ft.commit();
                 break;
             case 1:
-
                 ft.replace(R.id.main_frame, fmp);
                 ft.commit();
                 break;
@@ -167,6 +174,10 @@ public class MainActivity extends AppCompatActivity {
                     ft.replace(R.id.main_frame, fs);
                     SearchCount++;
                 }
+                ft.commit();
+                break;
+            case 4:
+                ft.replace(R.id.main_frame, fl);
                 ft.commit();
                 break;
         }
