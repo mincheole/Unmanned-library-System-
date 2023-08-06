@@ -17,4 +17,10 @@
         android:enabled="true"
         android:icon="@drawable/ic_baseline_library_books_24"
         android:title="대여정보"/>
+
+    <item
+        android:id="@+id/action_scan"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_qr_code_scanner_24"
+        android:title="대출반납"/>
 </menu>

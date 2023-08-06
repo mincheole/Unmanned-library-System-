@@ -7,14 +7,14 @@ import android.os.Parcelable;
 import java.io.Serializable;
 
 public class BookData implements Serializable {
-        public Bitmap drawableId;
+        public String drawableId;
         public String title;
         String author;
         String publisher;
         String location;
         String summary;
 
-        public BookData(Bitmap drawableId, String price,String author,String publisher,String location,String summary){
+        public BookData(String drawableId, String price,String author,String publisher,String location,String summary){
             this.drawableId = drawableId;
             this.title = price;
             this.author = author;

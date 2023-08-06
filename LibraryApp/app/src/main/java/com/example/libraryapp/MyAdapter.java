@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.io.ByteArrayOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -67,7 +69,11 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         MyViewHolder myViewHolder = (MyViewHolder) holder;
 
-        myViewHolder.ivPicture.setImageBitmap(bookDataArrayList.get(position).drawableId);
+        Glide.with(myViewHolder.itemView.getContext())
+                .load(bookDataArrayList.get(position).drawableId)
+                .into(myViewHolder.ivPicture);
+
+        //myViewHolder.ivPicture.setImageBitmap(bookDataArrayList.get(position).drawableId);
         myViewHolder.tvPrice.setText(bookDataArrayList.get(position).title);
     }
 
