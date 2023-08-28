@@ -21,6 +21,6 @@
 ## ERD:Entity-Relationship Diagram(개체-관계 다이어그램)
 <br>
 
-![image](https://github.com/mincheole/Unmanned-library-System-/assets/106231571/3e8ffcea-2779-447a-a956-19959001b18d)
+![image](https://github.com/mincheole/Unmanned-library-System-/assets/106231571/24e74c66-717d-49b4-9add-795215590e0d)
 <br>
 <br>
