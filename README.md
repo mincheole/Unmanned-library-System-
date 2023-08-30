@@ -19,6 +19,11 @@
   - 도서관 사서의 책 정리 시간을 단축, 효율적인 노동력을 제공하기 위해 스마트 책장을 개발하여 도서 위치 추적 시스템을 활용
   - 기존 도서관 시스템에서의 불편한 도서 위치 탐색 문제를 해결, 도서관 이용자가 책을 보다 용이하게 찾을 수 있도록 지원
 
+## 산출물
+[☞ 프로젝트 발표자료](https://docs.google.com/presentation/d/1WMeMlk0QseWL2_q4jOHldxuijFResaJs/edit?usp=drive_link&ouid=105569728462683027125&rtpof=true&sd=true)
+[☞ 프로젝트 결과보고서](https://drive.google.com/file/d/1qruPUhWEPJhogClHKAhK6o9CWgJMPrX3/view?usp=drive_link)
+[☞ 프로젝트 템플릿](https://docs.google.com/presentation/d/1JK9oPMjGXmqPNKpiTHzMrIFBxRgVO2Ya/edit?usp=drive_link&ouid=105569728462683027125&rtpof=true&sd=true)
+
 <br>
 
 ## DB:DataBase
