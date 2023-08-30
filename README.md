@@ -7,9 +7,9 @@
 
   |이름|역할|GitHub|GitHub Name|
   |:-:|:-:|:-:|:-:|
-  |김민철|팀장|
-  |남태웅|부팀장|
-  |이동호|팀원|
+  |남태웅|팀장|(https://github.com/TAEUNG-NAM)|TAEUNG-NAM|
+  |김민철|부팀장|(https://github.com/mincheole)|Mincheol Kim|
+  |이동호|팀원|(https://github.com/maknoodle)|maknoodle|
 
 <br>
 
