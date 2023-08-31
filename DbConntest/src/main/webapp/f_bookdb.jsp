@@ -39,11 +39,11 @@ try{
 		cstmt = conn.prepareCall("{call p_search2(?,?)}"); 	// 검색기능을 가진 프로시저 호출
 	}
 	cstmt.setString(1, keyword);								// ""안의 문자열(검색키워드)이 프로시저의 IN 파라미터로 전달
-	cstmt.registerOutParameter(2, OracleTypes.CURSOR);	// OUT 파라미터로 커서가 반환
-	cstmt.executeQuery(); 								// 프로시저 실행
-	rs = (ResultSet)cstmt.getObject(2);					// 변수 rs에 OUT파라미터인 커서를 반환	
-	while(rs.next()){ 									//조회되는 커서(행) 반복
-		JSONObject json = new JSONObject();
+	cstmt.registerOutParameter(2, OracleTypes.CURSOR);			// OUT 파라미터로 커서가 반환
+	cstmt.executeQuery(); 										// 프로시저 실행
+	rs = (ResultSet)cstmt.getObject(2);							// 변수 rs에 OUT파라미터인 커서를 반환	
+	while(rs.next()){ 											//조회되는 커서(행) 반복
+		JSONObject json = new JSONObject();						// json 객체 생성
 		json.put("ISBN",rs.getString(1));
 		json.put("제목",rs.getString(2));
 		json.put("저자",rs.getString(3));
@@ -55,18 +55,18 @@ try{
 		json.put("층",rs.getString(9));
 		json.put("줄",rs.getString(10));
 		json.put("칸",rs.getString(11));
-		jsonArray.add(json);
+		jsonArray.add(json);									// json 객체에 행 추가
 	}
 	if (mode.equals("1")){
-		cstmt = conn.prepareCall("{call p_search3(?,?)}"); 	// 검색기능을 가진 프로시저 호출
+		cstmt = conn.prepareCall("{call p_search3(?,?)}"); 		// 검색기능을 가진 프로시저 호출
 	} else if(mode.equals("2")){
-		cstmt = conn.prepareCall("{call p_search4(?,?)}"); 	// 검색기능을 가진 프로시저 호출
+		cstmt = conn.prepareCall("{call p_search4(?,?)}"); 		// 검색기능을 가진 프로시저 호출
 	}
 	cstmt.setString(1, keyword);								// ""안의 문자열(검색키워드)이 프로시저의 IN 파라미터로 전달
-	cstmt.registerOutParameter(2, OracleTypes.CURSOR);	// OUT 파라미터로 커서가 반환
-	cstmt.executeQuery(); 								// 프로시저 실행
+	cstmt.registerOutParameter(2, OracleTypes.CURSOR);			// OUT 파라미터로 커서가 반환
+	cstmt.executeQuery(); 										// 프로시저 실행
 	rs1 = (ResultSet)cstmt.getObject(2);
-	while(rs1.next()){ 									//조회되는 커서(행) 반복
+	while(rs1.next()){ 											//조회되는 커서(행) 반복
 		JSONObject json = new JSONObject();
 		json.put("ISBN",rs1.getString(1));
 		json.put("제목",rs1.getString(2));
