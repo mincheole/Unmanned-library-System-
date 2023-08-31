@@ -11,11 +11,20 @@
         <entry key="..\:/LibraryApp/app/src/main/res/layout/recycler_view_row.xml" value="0.213768115942029" />
         <entry key="..\:/LibraryApp/app/src/main/res/layout/row_item.xml" value="0.25" />
         <entry key="..\:/LibraryApp/app/src/main/res/menu/bottom_menu.xml" value="0.2755208333333333" />
+        <entry key="..\:/Where-is-the-book/LibraryApp/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1465" />
+        <entry key="..\:/Where-is-the-book/LibraryApp/app/src/main/res/drawable/ic_baseline_library_books_24.xml" value="0.1465" />
+        <entry key="..\:/Where-is-the-book/LibraryApp/app/src/main/res/drawable/ic_baseline_map_24.xml" value="0.1465" />
+        <entry key="..\:/Where-is-the-book/LibraryApp/app/src/main/res/drawable/ic_baseline_qr_code_scanner_24.xml" value="0.1465" />
         <entry key="..\:/Where-is-the-book/LibraryApp/app/src/main/res/layout/activity_login.xml" value="0.213768115942029" />
         <entry key="..\:/Where-is-the-book/LibraryApp/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Where-is-the-book/LibraryApp/app/src/main/res/layout/frag_home.xml" value="0.13645833333333332" />
+        <entry key="..\:/Where-is-the-book/LibraryApp/app/src/main/res/layout/frag_loan.xml" value="0.13645833333333332" />
+        <entry key="..\:/Where-is-the-book/LibraryApp/app/src/main/res/layout/frag_map.xml" value="0.13645833333333332" />
+        <entry key="..\:/Where-is-the-book/LibraryApp/app/src/main/res/layout/frag_search.xml" value="0.13645833333333332" />
         <entry key="..\:/Where-is-the-book/LibraryApp/app/src/main/res/layout/recycler_view_row.xml" value="0.13645833333333332" />
         <entry key="..\:/Where-is-the-book/LibraryApp/app/src/main/res/layout/row_item.xml" value="0.13645833333333332" />
         <entry key="..\:/Where-is-the-book/LibraryApp/app/src/main/res/layout/view_bookinfo.xml" value="0.4466666666666667" />
+        <entry key="..\:/Where-is-the-book/LibraryApp/app/src/main/res/menu/bottom_menu.xml" value="0.13645833333333332" />
       </map>
     </option>
   </component>
