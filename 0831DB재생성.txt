@@ -1,17 +1,17 @@
 --------------------------------------------------------
---  ÆÄÀÏÀÌ »ý¼ºµÊ - ¸ñ¿äÀÏ-8¿ù-31-2023   
+--  íŒŒì¼ì´ ìƒì„±ë¨ - ëª©ìš”ì¼-8ì›”-31-2023   
 --------------------------------------------------------
 --------------------------------------------------------
---  DDL for Sequence ÀÌ¿ë°ü¸®¹øÈ£
---------------------------------------------------------
-
-   CREATE SEQUENCE  "BOOKDB"."ÀÌ¿ë°ü¸®¹øÈ£"  MINVALUE 1 MAXVALUE 9999999 INCREMENT BY 1 START WITH 1 CACHE 20 NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
---------------------------------------------------------
---  DDL for Table RFIDÄ«µå
+--  DDL for Sequence ì´ìš©ê´€ë¦¬ë²ˆí˜¸
 --------------------------------------------------------
 
-  CREATE TABLE "BOOKDB"."RFIDÄ«µå" 
-   (	"RFIDÅÂ±×" VARCHAR2(20 BYTE)
+   CREATE SEQUENCE  "BOOKDB"."ì´ìš©ê´€ë¦¬ë²ˆí˜¸"  MINVALUE 1 MAXVALUE 9999999 INCREMENT BY 1 START WITH 1 CACHE 20 NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
+--------------------------------------------------------
+--  DDL for Table RFIDì¹´ë“œ
+--------------------------------------------------------
+
+  CREATE TABLE "BOOKDB"."RFIDì¹´ë“œ" 
+   (	"RFIDíƒœê·¸" VARCHAR2(20 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
@@ -20,67 +20,67 @@
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS" ;
 --------------------------------------------------------
---  DDL for Table µµ¼­
+--  DDL for Table ë„ì„œ
 --------------------------------------------------------
 
-  CREATE TABLE "BOOKDB"."µµ¼­" 
-   (	"µµ¼­¹øÈ£" VARCHAR2(100 BYTE), 
-	"ÇØ´çµµ¼­ISBN" VARCHAR2(100 BYTE)
+  CREATE TABLE "BOOKDB"."ë„ì„œ" 
+   (	"ë„ì„œë²ˆí˜¸" VARCHAR2(100 BYTE), 
+	"í•´ë‹¹ë„ì„œISBN" VARCHAR2(100 BYTE)
    ) SEGMENT CREATION DEFERRED 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
   TABLESPACE "USERS" ;
 --------------------------------------------------------
---  DDL for Table µµ¼­Á¤º¸
+--  DDL for Table ë„ì„œì •ë³´
 --------------------------------------------------------
 
-  CREATE TABLE "BOOKDB"."µµ¼­Á¤º¸" 
+  CREATE TABLE "BOOKDB"."ë„ì„œì •ë³´" 
    (	"ISBN" VARCHAR2(100 BYTE), 
-	"Á¦¸ñ" VARCHAR2(100 BYTE), 
-	"ÀúÀÚ" VARCHAR2(30 BYTE), 
-	"ÃâÆÇ»ç" VARCHAR2(30 BYTE), 
-	"¹ßÇà³âµµ" DATE, 
-	"µµ¼­¼Ò°³" VARCHAR2(500 BYTE), 
-	"µµ¼­ÀÌ¹ÌÁö" VARCHAR2(200 BYTE)
+	"ì œëª©" VARCHAR2(100 BYTE), 
+	"ì €ìž" VARCHAR2(30 BYTE), 
+	"ì¶œíŒì‚¬" VARCHAR2(30 BYTE), 
+	"ë°œí–‰ë…„ë„" DATE, 
+	"ë„ì„œì†Œê°œ" VARCHAR2(500 BYTE), 
+	"ë„ì„œì´ë¯¸ì§€" VARCHAR2(200 BYTE)
    ) SEGMENT CREATION DEFERRED 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
   TABLESPACE "USERS" ;
 --------------------------------------------------------
---  DDL for Table ÀÌ¿ë±â·Ï
+--  DDL for Table ì´ìš©ê¸°ë¡
 --------------------------------------------------------
 
-  CREATE TABLE "BOOKDB"."ÀÌ¿ë±â·Ï" 
-   (	"´ë¿©°ü¸®¹øÈ£" VARCHAR2(50 BYTE), 
-	"´ë¿©ÀÏ" DATE, 
-	"¹Ý³³¿¹Á¤ÀÏ" DATE, 
-	"¹Ý³³ÀÏ" DATE, 
-	"´ë¿©ÀÚID" VARCHAR2(30 BYTE), 
-	"´ë¿©µµ¼­¹øÈ£" VARCHAR2(100 BYTE)
+  CREATE TABLE "BOOKDB"."ì´ìš©ê¸°ë¡" 
+   (	"ëŒ€ì—¬ê´€ë¦¬ë²ˆí˜¸" VARCHAR2(50 BYTE), 
+	"ëŒ€ì—¬ì¼" DATE, 
+	"ë°˜ë‚©ì˜ˆì •ì¼" DATE, 
+	"ë°˜ë‚©ì¼" DATE, 
+	"ëŒ€ì—¬ìžID" VARCHAR2(30 BYTE), 
+	"ëŒ€ì—¬ë„ì„œë²ˆí˜¸" VARCHAR2(100 BYTE)
    ) SEGMENT CREATION DEFERRED 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
   TABLESPACE "USERS" ;
 --------------------------------------------------------
---  DDL for Table Ã¥Àå
+--  DDL for Table ì±…ìž¥
 --------------------------------------------------------
 
-  CREATE TABLE "BOOKDB"."Ã¥Àå" 
-   (	"Ã¥Àå¹øÈ£" VARCHAR2(30 BYTE), 
-	"À§Ä¡" VARCHAR2(30 BYTE), 
-	"²ÈÈùµµ¼­" VARCHAR2(100 BYTE)
+  CREATE TABLE "BOOKDB"."ì±…ìž¥" 
+   (	"ì±…ìž¥ë²ˆí˜¸" VARCHAR2(30 BYTE), 
+	"ìœ„ì¹˜" VARCHAR2(30 BYTE), 
+	"ê½‚ížŒë„ì„œ" VARCHAR2(100 BYTE)
    ) SEGMENT CREATION DEFERRED 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
   TABLESPACE "USERS" ;
 --------------------------------------------------------
---  DDL for Table È¸¿ø
+--  DDL for Table íšŒì›
 --------------------------------------------------------
 
-  CREATE TABLE "BOOKDB"."È¸¿ø" 
-   (	"È¸¿øID" VARCHAR2(30 BYTE), 
-	"È¸¿øÀÌ¸§" VARCHAR2(30 BYTE), 
-	"È¸¿øPW" VARCHAR2(30 BYTE)
+  CREATE TABLE "BOOKDB"."íšŒì›" 
+   (	"íšŒì›ID" VARCHAR2(30 BYTE), 
+	"íšŒì›ì´ë¦„" VARCHAR2(30 BYTE), 
+	"íšŒì›PW" VARCHAR2(30 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
@@ -88,32 +88,32 @@
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS" ;
-REM INSERTING into BOOKDB."RFIDÄ«µå"
+REM INSERTING into BOOKDB."RFIDì¹´ë“œ"
 SET DEFINE OFF;
-Insert into BOOKDB."RFIDÄ«µå" ("RFIDÅÂ±×") values ('13-cf-54-95');
-Insert into BOOKDB."RFIDÄ«µå" ("RFIDÅÂ±×") values ('2e-49-04-4b');
-Insert into BOOKDB."RFIDÄ«µå" ("RFIDÅÂ±×") values ('93-46-36-ad');
-Insert into BOOKDB."RFIDÄ«µå" ("RFIDÅÂ±×") values ('93-cd-94-95');
-Insert into BOOKDB."RFIDÄ«µå" ("RFIDÅÂ±×") values ('e3-8d-56-95');
-REM INSERTING into BOOKDB."µµ¼­"
+Insert into BOOKDB."RFIDì¹´ë“œ" ("RFIDíƒœê·¸") values ('13-cf-54-95');
+Insert into BOOKDB."RFIDì¹´ë“œ" ("RFIDíƒœê·¸") values ('2e-49-04-4b');
+Insert into BOOKDB."RFIDì¹´ë“œ" ("RFIDíƒœê·¸") values ('93-46-36-ad');
+Insert into BOOKDB."RFIDì¹´ë“œ" ("RFIDíƒœê·¸") values ('93-cd-94-95');
+Insert into BOOKDB."RFIDì¹´ë“œ" ("RFIDíƒœê·¸") values ('e3-8d-56-95');
+REM INSERTING into BOOKDB."ë„ì„œ"
 SET DEFINE OFF;
-REM INSERTING into BOOKDB."µµ¼­Á¤º¸"
+REM INSERTING into BOOKDB."ë„ì„œì •ë³´"
 SET DEFINE OFF;
-REM INSERTING into BOOKDB."ÀÌ¿ë±â·Ï"
+REM INSERTING into BOOKDB."ì´ìš©ê¸°ë¡"
 SET DEFINE OFF;
-REM INSERTING into BOOKDB."Ã¥Àå"
+REM INSERTING into BOOKDB."ì±…ìž¥"
 SET DEFINE OFF;
-REM INSERTING into BOOKDB."È¸¿ø"
+REM INSERTING into BOOKDB."íšŒì›"
 SET DEFINE OFF;
-Insert into BOOKDB."È¸¿ø" ("È¸¿øID","È¸¿øÀÌ¸§","È¸¿øPW") values ('kmc22','±è¹ÎÃ¶','aa12');
-Insert into BOOKDB."È¸¿ø" ("È¸¿øID","È¸¿øÀÌ¸§","È¸¿øPW") values ('ldh33','ÀÌµ¿È£','bb34');
-Insert into BOOKDB."È¸¿ø" ("È¸¿øID","È¸¿øÀÌ¸§","È¸¿øPW") values ('ntu44','³²ÅÂ¿õ','cc56');
-Insert into BOOKDB."È¸¿ø" ("È¸¿øID","È¸¿øÀÌ¸§","È¸¿øPW") values ('jjong2','±èÂÐÀÌ','dd78');
+Insert into BOOKDB."íšŒì›" ("íšŒì›ID","íšŒì›ì´ë¦„","íšŒì›PW") values ('kmc22','ê¹€ë¯¼ì² ','aa12');
+Insert into BOOKDB."íšŒì›" ("íšŒì›ID","íšŒì›ì´ë¦„","íšŒì›PW") values ('ldh33','ì´ë™í˜¸','bb34');
+Insert into BOOKDB."íšŒì›" ("íšŒì›ID","íšŒì›ì´ë¦„","íšŒì›PW") values ('ntu44','ë‚¨íƒœì›…','cc56');
+Insert into BOOKDB."íšŒì›" ("íšŒì›ID","íšŒì›ì´ë¦„","íšŒì›PW") values ('jjong2','ê¹€ì«‘ì´','dd78');
 --------------------------------------------------------
 --  DDL for Index SYS_C0020651
 --------------------------------------------------------
 
-  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0020651" ON "BOOKDB"."È¸¿ø" ("È¸¿øID") 
+  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0020651" ON "BOOKDB"."íšŒì›" ("íšŒì›ID") 
   PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
@@ -123,7 +123,7 @@ Insert into BOOKDB."È¸¿ø" ("È¸¿øID","È¸¿øÀÌ¸§","È¸¿øPW") values ('jjong2','±èÂÐÀ
 --  DDL for Index SYS_C0020653
 --------------------------------------------------------
 
-  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0020653" ON "BOOKDB"."RFIDÄ«µå" ("RFIDÅÂ±×") 
+  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0020653" ON "BOOKDB"."RFIDì¹´ë“œ" ("RFIDíƒœê·¸") 
   PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
@@ -133,35 +133,35 @@ Insert into BOOKDB."È¸¿ø" ("È¸¿øID","È¸¿øÀÌ¸§","È¸¿øPW") values ('jjong2','±èÂÐÀ
 --  DDL for Index SYS_C0025131
 --------------------------------------------------------
 
-  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0025131" ON "BOOKDB"."µµ¼­Á¤º¸" ("ISBN") 
+  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0025131" ON "BOOKDB"."ë„ì„œì •ë³´" ("ISBN") 
   PCTFREE 10 INITRANS 2 MAXTRANS 255 
   TABLESPACE "USERS" ;
 --------------------------------------------------------
 --  DDL for Index SYS_C0025132
 --------------------------------------------------------
 
-  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0025132" ON "BOOKDB"."µµ¼­" ("µµ¼­¹øÈ£") 
+  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0025132" ON "BOOKDB"."ë„ì„œ" ("ë„ì„œë²ˆí˜¸") 
   PCTFREE 10 INITRANS 2 MAXTRANS 255 
   TABLESPACE "USERS" ;
 --------------------------------------------------------
 --  DDL for Index SYS_C0025134
 --------------------------------------------------------
 
-  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0025134" ON "BOOKDB"."Ã¥Àå" ("Ã¥Àå¹øÈ£") 
+  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0025134" ON "BOOKDB"."ì±…ìž¥" ("ì±…ìž¥ë²ˆí˜¸") 
   PCTFREE 10 INITRANS 2 MAXTRANS 255 
   TABLESPACE "USERS" ;
 --------------------------------------------------------
 --  DDL for Index SYS_C0025136
 --------------------------------------------------------
 
-  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0025136" ON "BOOKDB"."ÀÌ¿ë±â·Ï" ("´ë¿©°ü¸®¹øÈ£") 
+  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0025136" ON "BOOKDB"."ì´ìš©ê¸°ë¡" ("ëŒ€ì—¬ê´€ë¦¬ë²ˆí˜¸") 
   PCTFREE 10 INITRANS 2 MAXTRANS 255 
   TABLESPACE "USERS" ;
 --------------------------------------------------------
 --  DDL for Index SYS_C0020653
 --------------------------------------------------------
 
-  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0020653" ON "BOOKDB"."RFIDÄ«µå" ("RFIDÅÂ±×") 
+  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0020653" ON "BOOKDB"."RFIDì¹´ë“œ" ("RFIDíƒœê·¸") 
   PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
@@ -171,35 +171,35 @@ Insert into BOOKDB."È¸¿ø" ("È¸¿øID","È¸¿øÀÌ¸§","È¸¿øPW") values ('jjong2','±èÂÐÀ
 --  DDL for Index SYS_C0025132
 --------------------------------------------------------
 
-  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0025132" ON "BOOKDB"."µµ¼­" ("µµ¼­¹øÈ£") 
+  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0025132" ON "BOOKDB"."ë„ì„œ" ("ë„ì„œë²ˆí˜¸") 
   PCTFREE 10 INITRANS 2 MAXTRANS 255 
   TABLESPACE "USERS" ;
 --------------------------------------------------------
 --  DDL for Index SYS_C0025131
 --------------------------------------------------------
 
-  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0025131" ON "BOOKDB"."µµ¼­Á¤º¸" ("ISBN") 
+  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0025131" ON "BOOKDB"."ë„ì„œì •ë³´" ("ISBN") 
   PCTFREE 10 INITRANS 2 MAXTRANS 255 
   TABLESPACE "USERS" ;
 --------------------------------------------------------
 --  DDL for Index SYS_C0025136
 --------------------------------------------------------
 
-  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0025136" ON "BOOKDB"."ÀÌ¿ë±â·Ï" ("´ë¿©°ü¸®¹øÈ£") 
+  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0025136" ON "BOOKDB"."ì´ìš©ê¸°ë¡" ("ëŒ€ì—¬ê´€ë¦¬ë²ˆí˜¸") 
   PCTFREE 10 INITRANS 2 MAXTRANS 255 
   TABLESPACE "USERS" ;
 --------------------------------------------------------
 --  DDL for Index SYS_C0025134
 --------------------------------------------------------
 
-  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0025134" ON "BOOKDB"."Ã¥Àå" ("Ã¥Àå¹øÈ£") 
+  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0025134" ON "BOOKDB"."ì±…ìž¥" ("ì±…ìž¥ë²ˆí˜¸") 
   PCTFREE 10 INITRANS 2 MAXTRANS 255 
   TABLESPACE "USERS" ;
 --------------------------------------------------------
 --  DDL for Index SYS_C0020651
 --------------------------------------------------------
 
-  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0020651" ON "BOOKDB"."È¸¿ø" ("È¸¿øID") 
+  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0020651" ON "BOOKDB"."íšŒì›" ("íšŒì›ID") 
   PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
@@ -211,13 +211,13 @@ Insert into BOOKDB."È¸¿ø" ("È¸¿øID","È¸¿øÀÌ¸§","È¸¿øPW") values ('jjong2','±èÂÐÀ
 set define off;
 
   CREATE OR REPLACE NONEDITIONABLE PROCEDURE "BOOKDB"."P_LOGIN" (
-    pi_id IN È¸¿ø.È¸¿øID%TYPE,
-    pi_pw IN È¸¿ø.È¸¿øPW%TYPE,
+    pi_id IN íšŒì›.íšŒì›ID%TYPE,
+    pi_pw IN íšŒì›.íšŒì›PW%TYPE,
     po_result out NUMBER
 ) AS
     V_PW VARCHAR2(30);
 BEGIN
-        SELECT È¸¿øPW INTO V_PW from È¸¿ø where È¸¿øID = pi_id;
+        SELECT íšŒì›PW INTO V_PW from íšŒì› where íšŒì›ID = pi_id;
         IF pi_pw = V_PW THEN
             po_result := 1;
         ELSE
@@ -227,74 +227,74 @@ END;
 
 /
 --------------------------------------------------------
---  Constraints for Table RFIDÄ«µå
+--  Constraints for Table RFIDì¹´ë“œ
 --------------------------------------------------------
 
-  ALTER TABLE "BOOKDB"."RFIDÄ«µå" MODIFY ("RFIDÅÂ±×" NOT NULL ENABLE);
-  ALTER TABLE "BOOKDB"."RFIDÄ«µå" ADD PRIMARY KEY ("RFIDÅÂ±×")
+  ALTER TABLE "BOOKDB"."RFIDì¹´ë“œ" MODIFY ("RFIDíƒœê·¸" NOT NULL ENABLE);
+  ALTER TABLE "BOOKDB"."RFIDì¹´ë“œ" ADD PRIMARY KEY ("RFIDíƒœê·¸")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS"  ENABLE;
 --------------------------------------------------------
---  Constraints for Table µµ¼­
+--  Constraints for Table ë„ì„œ
 --------------------------------------------------------
 
-  ALTER TABLE "BOOKDB"."µµ¼­" ADD PRIMARY KEY ("µµ¼­¹øÈ£")
+  ALTER TABLE "BOOKDB"."ë„ì„œ" ADD PRIMARY KEY ("ë„ì„œë²ˆí˜¸")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 
   TABLESPACE "USERS"  ENABLE;
 --------------------------------------------------------
---  Constraints for Table µµ¼­Á¤º¸
+--  Constraints for Table ë„ì„œì •ë³´
 --------------------------------------------------------
 
-  ALTER TABLE "BOOKDB"."µµ¼­Á¤º¸" ADD PRIMARY KEY ("ISBN")
+  ALTER TABLE "BOOKDB"."ë„ì„œì •ë³´" ADD PRIMARY KEY ("ISBN")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 
   TABLESPACE "USERS"  ENABLE;
 --------------------------------------------------------
---  Constraints for Table ÀÌ¿ë±â·Ï
+--  Constraints for Table ì´ìš©ê¸°ë¡
 --------------------------------------------------------
 
-  ALTER TABLE "BOOKDB"."ÀÌ¿ë±â·Ï" ADD PRIMARY KEY ("´ë¿©°ü¸®¹øÈ£")
+  ALTER TABLE "BOOKDB"."ì´ìš©ê¸°ë¡" ADD PRIMARY KEY ("ëŒ€ì—¬ê´€ë¦¬ë²ˆí˜¸")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 
   TABLESPACE "USERS"  ENABLE;
 --------------------------------------------------------
---  Constraints for Table Ã¥Àå
+--  Constraints for Table ì±…ìž¥
 --------------------------------------------------------
 
-  ALTER TABLE "BOOKDB"."Ã¥Àå" ADD PRIMARY KEY ("Ã¥Àå¹øÈ£")
+  ALTER TABLE "BOOKDB"."ì±…ìž¥" ADD PRIMARY KEY ("ì±…ìž¥ë²ˆí˜¸")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 
   TABLESPACE "USERS"  ENABLE;
 --------------------------------------------------------
---  Constraints for Table È¸¿ø
+--  Constraints for Table íšŒì›
 --------------------------------------------------------
 
-  ALTER TABLE "BOOKDB"."È¸¿ø" MODIFY ("È¸¿øID" NOT NULL ENABLE);
-  ALTER TABLE "BOOKDB"."È¸¿ø" MODIFY ("È¸¿øÀÌ¸§" NOT NULL ENABLE);
-  ALTER TABLE "BOOKDB"."È¸¿ø" MODIFY ("È¸¿øPW" NOT NULL ENABLE);
-  ALTER TABLE "BOOKDB"."È¸¿ø" ADD PRIMARY KEY ("È¸¿øID")
+  ALTER TABLE "BOOKDB"."íšŒì›" MODIFY ("íšŒì›ID" NOT NULL ENABLE);
+  ALTER TABLE "BOOKDB"."íšŒì›" MODIFY ("íšŒì›ì´ë¦„" NOT NULL ENABLE);
+  ALTER TABLE "BOOKDB"."íšŒì›" MODIFY ("íšŒì›PW" NOT NULL ENABLE);
+  ALTER TABLE "BOOKDB"."íšŒì›" ADD PRIMARY KEY ("íšŒì›ID")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS"  ENABLE;
 --------------------------------------------------------
---  Ref Constraints for Table µµ¼­
+--  Ref Constraints for Table ë„ì„œ
 --------------------------------------------------------
 
-  ALTER TABLE "BOOKDB"."µµ¼­" ADD FOREIGN KEY ("ÇØ´çµµ¼­ISBN")
-	  REFERENCES "BOOKDB"."µµ¼­Á¤º¸" ("ISBN") ENABLE;
+  ALTER TABLE "BOOKDB"."ë„ì„œ" ADD FOREIGN KEY ("í•´ë‹¹ë„ì„œISBN")
+	  REFERENCES "BOOKDB"."ë„ì„œì •ë³´" ("ISBN") ENABLE;
 --------------------------------------------------------
---  Ref Constraints for Table ÀÌ¿ë±â·Ï
---------------------------------------------------------
-
-  ALTER TABLE "BOOKDB"."ÀÌ¿ë±â·Ï" ADD FOREIGN KEY ("´ë¿©µµ¼­¹øÈ£")
-	  REFERENCES "BOOKDB"."µµ¼­" ("µµ¼­¹øÈ£") ENABLE;
-  ALTER TABLE "BOOKDB"."ÀÌ¿ë±â·Ï" ADD FOREIGN KEY ("´ë¿©ÀÚID")
-	  REFERENCES "BOOKDB"."È¸¿ø" ("È¸¿øID") ENABLE;
---------------------------------------------------------
---  Ref Constraints for Table Ã¥Àå
+--  Ref Constraints for Table ì´ìš©ê¸°ë¡
 --------------------------------------------------------
 
-  ALTER TABLE "BOOKDB"."Ã¥Àå" ADD FOREIGN KEY ("²ÈÈùµµ¼­")
-	  REFERENCES "BOOKDB"."µµ¼­" ("µµ¼­¹øÈ£") ENABLE;
+  ALTER TABLE "BOOKDB"."ì´ìš©ê¸°ë¡" ADD FOREIGN KEY ("ëŒ€ì—¬ë„ì„œë²ˆí˜¸")
+	  REFERENCES "BOOKDB"."ë„ì„œ" ("ë„ì„œë²ˆí˜¸") ENABLE;
+  ALTER TABLE "BOOKDB"."ì´ìš©ê¸°ë¡" ADD FOREIGN KEY ("ëŒ€ì—¬ìžID")
+	  REFERENCES "BOOKDB"."íšŒì›" ("íšŒì›ID") ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table ì±…ìž¥
+--------------------------------------------------------
+
+  ALTER TABLE "BOOKDB"."ì±…ìž¥" ADD FOREIGN KEY ("ê½‚ížŒë„ì„œ")
+	  REFERENCES "BOOKDB"."ë„ì„œ" ("ë„ì„œë²ˆí˜¸") ENABLE;
