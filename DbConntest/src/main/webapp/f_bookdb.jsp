@@ -24,7 +24,7 @@
 	String keyword = request.getParameter("keyword");
 	String mode = request.getParameter("mode");
 	//mode = "1";
-	//keyword ="";
+	//keyword ="";R
 
 
 try{
@@ -44,19 +44,17 @@ try{
 	rs = (ResultSet)cstmt.getObject(2);							// 변수 rs에 OUT파라미터인 커서를 반환	
 	while(rs.next()){ 											//조회되는 커서(행) 반복
 		JSONObject json = new JSONObject();						// json 객체 생성
-		json.put("ISBN",rs1.getString(1));
-		json.put("제목",rs1.getString(2));
-		json.put("저자",rs1.getString(3));
-		json.put("출판사",rs1.getString(4));
-		json.put("발행년도", rs1.getDate(5).toString().substring(0,7));
-		json.put("도서소개",rs1.getString(6));
-		json.put("도서이미지",rs1.getString(7));
+		json.put("ISBN",rs.getString(1));
+		json.put("제목",rs.getString(2));
+		json.put("저자",rs.getString(3));
+		json.put("출판사",rs.getString(4));
+		json.put("발행년도", rs.getDate(5).toString().substring(0,7));
+		json.put("도서소개",rs.getString(6));
+		json.put("도서이미지",rs.getString(7));
 		jsonArray.add(json);									// json 객체에 행 추가
 	}
-
 	out.println(jsonArray);
 	rs.close();
-	rs1.close();
 	cstmt.close();
 	conn.close();
 }catch(Exception e){
