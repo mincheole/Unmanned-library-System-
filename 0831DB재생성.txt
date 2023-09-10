@@ -1,0 +1,300 @@
+--------------------------------------------------------
+--  파일이 생성됨 - 목요일-8월-31-2023   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Sequence 이용관리번호
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "BOOKDB"."이용관리번호"  MINVALUE 1 MAXVALUE 9999999 INCREMENT BY 1 START WITH 1 CACHE 20 NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
+--------------------------------------------------------
+--  DDL for Table RFID카드
+--------------------------------------------------------
+
+  CREATE TABLE "BOOKDB"."RFID카드" 
+   (	"RFID태그" VARCHAR2(20 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table 도서
+--------------------------------------------------------
+
+  CREATE TABLE "BOOKDB"."도서" 
+   (	"도서번호" VARCHAR2(100 BYTE), 
+	"해당도서ISBN" VARCHAR2(100 BYTE)
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table 도서정보
+--------------------------------------------------------
+
+  CREATE TABLE "BOOKDB"."도서정보" 
+   (	"ISBN" VARCHAR2(100 BYTE), 
+	"제목" VARCHAR2(100 BYTE), 
+	"저자" VARCHAR2(30 BYTE), 
+	"출판사" VARCHAR2(30 BYTE), 
+	"발행년도" DATE, 
+	"도서소개" VARCHAR2(500 BYTE), 
+	"도서이미지" VARCHAR2(200 BYTE)
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table 이용기록
+--------------------------------------------------------
+
+  CREATE TABLE "BOOKDB"."이용기록" 
+   (	"대여관리번호" VARCHAR2(50 BYTE), 
+	"대여일" DATE, 
+	"반납예정일" DATE, 
+	"반납일" DATE, 
+	"대여자ID" VARCHAR2(30 BYTE), 
+	"대여도서번호" VARCHAR2(100 BYTE)
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table 책장
+--------------------------------------------------------
+
+  CREATE TABLE "BOOKDB"."책장" 
+   (	"책장번호" VARCHAR2(30 BYTE), 
+	"위치" VARCHAR2(30 BYTE), 
+	"꽂힌도서" VARCHAR2(100 BYTE)
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table 회원
+--------------------------------------------------------
+
+  CREATE TABLE "BOOKDB"."회원" 
+   (	"회원ID" VARCHAR2(30 BYTE), 
+	"회원이름" VARCHAR2(30 BYTE), 
+	"회원PW" VARCHAR2(30 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+REM INSERTING into BOOKDB."RFID카드"
+SET DEFINE OFF;
+Insert into BOOKDB."RFID카드" ("RFID태그") values ('13-cf-54-95');
+Insert into BOOKDB."RFID카드" ("RFID태그") values ('2e-49-04-4b');
+Insert into BOOKDB."RFID카드" ("RFID태그") values ('93-46-36-ad');
+Insert into BOOKDB."RFID카드" ("RFID태그") values ('93-cd-94-95');
+Insert into BOOKDB."RFID카드" ("RFID태그") values ('e3-8d-56-95');
+REM INSERTING into BOOKDB."도서"
+SET DEFINE OFF;
+REM INSERTING into BOOKDB."도서정보"
+SET DEFINE OFF;
+REM INSERTING into BOOKDB."이용기록"
+SET DEFINE OFF;
+REM INSERTING into BOOKDB."책장"
+SET DEFINE OFF;
+REM INSERTING into BOOKDB."회원"
+SET DEFINE OFF;
+Insert into BOOKDB."회원" ("회원ID","회원이름","회원PW") values ('kmc22','김민철','aa12');
+Insert into BOOKDB."회원" ("회원ID","회원이름","회원PW") values ('ldh33','이동호','bb34');
+Insert into BOOKDB."회원" ("회원ID","회원이름","회원PW") values ('ntu44','남태웅','cc56');
+Insert into BOOKDB."회원" ("회원ID","회원이름","회원PW") values ('jjong2','김쫑이','dd78');
+--------------------------------------------------------
+--  DDL for Index SYS_C0020651
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0020651" ON "BOOKDB"."회원" ("회원ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index SYS_C0020653
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0020653" ON "BOOKDB"."RFID카드" ("RFID태그") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index SYS_C0025131
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0025131" ON "BOOKDB"."도서정보" ("ISBN") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index SYS_C0025132
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0025132" ON "BOOKDB"."도서" ("도서번호") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index SYS_C0025134
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0025134" ON "BOOKDB"."책장" ("책장번호") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index SYS_C0025136
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0025136" ON "BOOKDB"."이용기록" ("대여관리번호") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index SYS_C0020653
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0020653" ON "BOOKDB"."RFID카드" ("RFID태그") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index SYS_C0025132
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0025132" ON "BOOKDB"."도서" ("도서번호") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index SYS_C0025131
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0025131" ON "BOOKDB"."도서정보" ("ISBN") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index SYS_C0025136
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0025136" ON "BOOKDB"."이용기록" ("대여관리번호") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index SYS_C0025134
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0025134" ON "BOOKDB"."책장" ("책장번호") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index SYS_C0020651
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "BOOKDB"."SYS_C0020651" ON "BOOKDB"."회원" ("회원ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Procedure P_LOGIN
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE NONEDITIONABLE PROCEDURE "BOOKDB"."P_LOGIN" (
+    pi_id IN 회원.회원ID%TYPE,
+    pi_pw IN 회원.회원PW%TYPE,
+    po_result out NUMBER
+) AS
+    V_PW VARCHAR2(30);
+BEGIN
+        SELECT 회원PW INTO V_PW from 회원 where 회원ID = pi_id;
+        IF pi_pw = V_PW THEN
+            po_result := 1;
+        ELSE
+            po_result := 0;
+        END IF;
+END;
+
+/
+--------------------------------------------------------
+--  Constraints for Table RFID카드
+--------------------------------------------------------
+
+  ALTER TABLE "BOOKDB"."RFID카드" MODIFY ("RFID태그" NOT NULL ENABLE);
+  ALTER TABLE "BOOKDB"."RFID카드" ADD PRIMARY KEY ("RFID태그")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table 도서
+--------------------------------------------------------
+
+  ALTER TABLE "BOOKDB"."도서" ADD PRIMARY KEY ("도서번호")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table 도서정보
+--------------------------------------------------------
+
+  ALTER TABLE "BOOKDB"."도서정보" ADD PRIMARY KEY ("ISBN")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table 이용기록
+--------------------------------------------------------
+
+  ALTER TABLE "BOOKDB"."이용기록" ADD PRIMARY KEY ("대여관리번호")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table 책장
+--------------------------------------------------------
+
+  ALTER TABLE "BOOKDB"."책장" ADD PRIMARY KEY ("책장번호")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table 회원
+--------------------------------------------------------
+
+  ALTER TABLE "BOOKDB"."회원" MODIFY ("회원ID" NOT NULL ENABLE);
+  ALTER TABLE "BOOKDB"."회원" MODIFY ("회원이름" NOT NULL ENABLE);
+  ALTER TABLE "BOOKDB"."회원" MODIFY ("회원PW" NOT NULL ENABLE);
+  ALTER TABLE "BOOKDB"."회원" ADD PRIMARY KEY ("회원ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table 도서
+--------------------------------------------------------
+
+  ALTER TABLE "BOOKDB"."도서" ADD FOREIGN KEY ("해당도서ISBN")
+	  REFERENCES "BOOKDB"."도서정보" ("ISBN") ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table 이용기록
+--------------------------------------------------------
+
+  ALTER TABLE "BOOKDB"."이용기록" ADD FOREIGN KEY ("대여도서번호")
+	  REFERENCES "BOOKDB"."도서" ("도서번호") ENABLE;
+  ALTER TABLE "BOOKDB"."이용기록" ADD FOREIGN KEY ("대여자ID")
+	  REFERENCES "BOOKDB"."회원" ("회원ID") ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table 책장
+--------------------------------------------------------
+
+  ALTER TABLE "BOOKDB"."책장" ADD FOREIGN KEY ("꽂힌도서")
+	  REFERENCES "BOOKDB"."도서" ("도서번호") ENABLE;

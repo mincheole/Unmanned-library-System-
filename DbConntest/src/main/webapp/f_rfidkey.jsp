@@ -19,14 +19,14 @@ PreparedStatement pstmt = null;
 PreparedStatement pstmt1 = null;
 PreparedStatement pstmt2 = null;
 System.out.println("Create rfid obj");
-rfid_key = request.getParameter("rfid");
+rfid_key = request.getParameter("rfid"); //리더기에서 넘긴 정보 받음
 System.out.println(rfid_key);
 out.println(rfid_key);
 ResultSet rs = null;
 ResultSet rs1 =null;
 int count =0;
 System.out.println("rfid jsp end");
-
+/*
 try {
 	Class.forName("oracle.jdbc.driver.OracleDriver"); // 오라클 드라이버 적재
 	System.out.println("DB Driver On");
@@ -72,5 +72,5 @@ try {
 		e.printStackTrace();
 	}
 	System.out.println("rfid jsp end");
-}
+}*/
 %>

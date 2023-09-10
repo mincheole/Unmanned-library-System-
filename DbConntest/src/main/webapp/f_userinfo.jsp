@@ -26,7 +26,7 @@ try {
 	Class.forName("oracle.jdbc.driver.OracleDriver"); // 오라클 드라이버 적재
 	System.out.println("DB Driver On");
 	conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "BOOKDB", "1234");
-	System.out.println("DB Connecting"); // 도서위치추적시스템 데이터베이스에 연결
+	System.out.println("DB Connecting"); 				// 도서위치추적시스템 데이터베이스에 연결
     query = "select 책제목,대여일,반납예정일 from v_info where 회원ID =" +"'"+userId+"'";
     stmt = conn.createStatement();
     rs = stmt.executeQuery(query);
