@@ -11,7 +11,7 @@
 <%
 Connection conn = null;
 String rfid_key,query,query1;
-String bookisbn=null;
+String user_id,bookisbn=null;
 String past_bookisbn=null;
 Statement stmt = null;
 Statement stmt1 = null;
@@ -20,7 +20,9 @@ PreparedStatement pstmt1 = null;
 PreparedStatement pstmt2 = null;
 System.out.println("Create rfid obj");
 rfid_key = request.getParameter("rfid"); //리더기에서 넘긴 정보 받음
-System.out.println(rfid_key);
+user_id = request.getParameter("userid"); //리더기에서 넘긴 정보 받음
+System.out.println("rifd = " + rfid_key);
+System.out.println("id = " + user_id);
 out.println(rfid_key);
 ResultSet rs = null;
 ResultSet rs1 =null;
