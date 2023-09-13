@@ -44,7 +44,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     intent.putExtra("title",bookDataArrayList.get(pos).title);
                     intent.putExtra("author",bookDataArrayList.get(pos).author);
                     intent.putExtra("publisher",bookDataArrayList.get(pos).publisher);
-                    intent.putExtra("location",bookDataArrayList.get(pos).location);
+//                    intent.putExtra("location",bookDataArrayList.get(pos).location);
                     intent.putExtra("summary",bookDataArrayList.get(pos).summary);
                     view.getContext().startActivity(intent);
                 }

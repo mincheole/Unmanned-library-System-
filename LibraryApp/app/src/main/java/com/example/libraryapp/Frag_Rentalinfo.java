@@ -23,7 +23,6 @@ public class Frag_Rentalinfo extends Fragment { //대여정보 프래그먼트
     ArrayList<rentalData> rentaldata;    //어레이형식
     private Handler handler;
     ListView rentalList;
-    String result;
     static String ID;   // LoginActivity로 부터 사용자ID 받아올 정적변수
     private static CustomAdapter customAdapter;
     LoginActivity logAct;
@@ -37,7 +36,6 @@ public class Frag_Rentalinfo extends Fragment { //대여정보 프래그먼트
         rentaldata = new ArrayList<>();
 
         new BackgroundThread().start();    // 쓰레드 호출
-//        rentaldata.add(new rentalData("니체의말", "김민철", "2020"));
         return view;
     }
 
@@ -46,8 +44,9 @@ public class Frag_Rentalinfo extends Fragment { //대여정보 프래그먼트
         public void run() {
             // 백그라운드 작업 수행
 
-            logAct.id = ID;
-            String result = logAct.connect(2);
+            ServerConnector.ConnectionParams params = new ServerConnector.ConnectionParams();
+            params.setId(3, ID);
+            String result = ServerConnector.connect(params);
 
             try {
                 JSONArray jsonArray = new JSONArray(result);

@@ -35,7 +35,7 @@ public class BookInfo extends AppCompatActivity {
         this.title.setText(tit);
         this.author.setText(intent.getStringExtra("author"));
         this.publisher.setText(intent.getStringExtra("publisher"));
-        this.location.setText(intent.getStringExtra("location"));
+//        this.location.setText(intent.getStringExtra("location"));
         this.summary.setText(intent.getStringExtra("summary"));
     }
 }
