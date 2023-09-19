@@ -40,9 +40,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:backgroundTint="#724B72FD"
         android:text="검 색"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textSize="18dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,9 +49,10 @@
 
     <Spinner
         android:id="@+id/Search_spinner"
-        android:layout_width="103dp"
+        android:layout_width="100dp"
         android:layout_height="43dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="@dimen/bookname_right"
+        android:paddingLeft="5dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/main_frame"

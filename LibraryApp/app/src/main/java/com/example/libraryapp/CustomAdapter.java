@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+// 리스트뷰 사용을 위한 커스텀 어댑터
 public class CustomAdapter extends ArrayAdapter {
     private Context context;
     private List list;

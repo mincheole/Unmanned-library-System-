@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ProgressBar 회전을 위한 xml -->
+<animated-rotate
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/ic_rotate_right_24"
+    android:pivotX="50%"
+    android:pivotY="50%">
+</animated-rotate>

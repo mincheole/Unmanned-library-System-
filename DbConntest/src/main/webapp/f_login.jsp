@@ -35,6 +35,7 @@ try {
 	out.println(result);
 	System.out.println(result);
 	System.out.println(userId + " login");
+	System.out.println(userPw + " login");
 	cstmt.close();
 	conn.close();
 } catch (Exception e) {

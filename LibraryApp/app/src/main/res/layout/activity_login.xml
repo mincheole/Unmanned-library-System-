@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,74 +7,68 @@
     android:orientation="vertical"
     tools:context=".LoginActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+
+    <!--    타이틀 및 로고-->
+    <EditText
+        android:id="@+id/et_id"
+        android:layout_width="300dp"
+        android:layout_height="35dp"
+        android:paddingLeft="10sp"
+        android:hint="ID"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="198dp"
+        android:background="@drawable/id"
+        android:foregroundGravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/some_id"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="80dp">
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="97dp"
+        android:layout_marginTop="91dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="무인 도서관리 시스템"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="#2C3479"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    <EditText
+        android:id="@+id/et_pw"
+        android:layout_width="300dp"
+        android:layout_height="0dp"
+        android:paddingLeft="10sp"
+        android:hint="PW"
+        android:inputType="textPassword"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/pw"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_id" />
 
-<!--            아이디 입력창-->
-            <EditText
-                android:id="@+id/et_id"
-                android:layout_width="250dp"
-                android:layout_height="45dp"
-                android:background="@drawable/view_edge"
-                android:padding="10dp"
-                android:hint="아이디"/>
+    <Button
+        android:id="@+id/login_btn"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:text="로그인"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/view_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_pw" />
 
-<!--            비밀번호 입력창-->
-            <EditText
-                android:id="@+id/et_pw"
-                android:layout_width="250dp"
-                android:layout_height="45dp"
-                android:background="@drawable/view_edge"
-                android:padding="10dp"
-                android:hint="비밀번호"
-                android:inputType="textPassword"/>
 
-        </LinearLayout>
 
-        <!--로그인 버튼-->
-        <Button
-            android:id="@+id/login_btn"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:text="로그인"
-            android:textColor="#000000"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="-5dp"
-            android:backgroundTint="#724B72FD"/>
-
-    </LinearLayout>
-
-<!--    타이틀 및 로고-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Where is the Book"
-            android:textSize="41dp"
-            android:textColor="#000000"
-            android:textStyle="bold"
-            android:layout_marginTop="60dp"
-            android:gravity="center_horizontal"/>
-
-        <!--    동의대학교 마크 이미지-->
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="300dp"
-            android:src="@drawable/deu_img_bk"/>
-    </LinearLayout>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
