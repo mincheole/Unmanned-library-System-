@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="auto_left">40dp</dimen>
+    <dimen name="auto_right">40dp</dimen>
+    <dimen name="auto_top">60dp</dimen>
+    <dimen name="auto_bottom">40dp</dimen>
+    <dimen name="bookname_left">72dp</dimen>
+    <dimen name="bookname_right">15dp</dimen>
+
+
+</resources>

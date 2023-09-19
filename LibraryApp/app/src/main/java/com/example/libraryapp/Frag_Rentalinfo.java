@@ -23,15 +23,12 @@ public class Frag_Rentalinfo extends Fragment { //대여정보 프래그먼트
     ArrayList<rentalData> rentaldata;    //어레이형식
     private Handler handler;
     ListView rentalList;
-    static String ID;   // LoginActivity로 부터 사용자ID 받아올 정적변수
     private static CustomAdapter customAdapter;
-    LoginActivity logAct;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 //        handler = new Handler(Looper.getMainLooper());  // 쓰레드 사용을 위한 핸들러 생성(getMainLooper() 메인쓰레드호출)
-        logAct = new LoginActivity();
         View view = inflater.inflate(R.layout.frag_rentalinfo, container, false); //레이아웃 inflate로 객체화
         rentaldata = new ArrayList<>();
 
@@ -45,16 +42,16 @@ public class Frag_Rentalinfo extends Fragment { //대여정보 프래그먼트
             // 백그라운드 작업 수행
 
             ServerConnector.ConnectionParams params = new ServerConnector.ConnectionParams();
-            params.setId(3, ID);
+            params.setOption(2);
             String result = ServerConnector.connect(params);
 
             try {
                 JSONArray jsonArray = new JSONArray(result);
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    String bookName = jsonObject.getString("책제목");
+                    String bookName = jsonObject.getString("제목");
                     String startRental = jsonObject.getString("대여일");
-                    String endRental = jsonObject.getString("반납일");
+                    String endRental = jsonObject.getString("반납예정일");
                     rentaldata.add(new rentalData(bookName, startRental, endRental));
                 }
             } catch (JSONException e) {

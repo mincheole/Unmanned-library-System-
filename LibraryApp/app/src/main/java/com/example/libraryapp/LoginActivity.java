@@ -27,8 +27,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText et_id, et_pw;
     protected String id, pw;
     private String login;      // 로그인 성공여부 판별 변수
-    private String rfid;
-
 
 
     @Override
@@ -45,13 +43,12 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 id = et_id.getText().toString();    // 사용자가 입력한 id값 저장
                 pw = et_pw.getText().toString();    // 사용자가 입력한 pw값 저장
-                Frag_Rentalinfo.ID = id;
 
                 Thread t1 = new Thread(new Runnable() {     // 로그인 기능(통신)은 메인 쓰레드에서 불가능(새로운 쓰레드 생성)
                     @Override
                     public void run() {
-                        ServerConnector.ConnectionParams params = new ServerConnector.ConnectionParams();
-                        params.setId(1, id).setPw(pw);
+                        ServerConnector.ConnectionParams params = new ServerConnector.ConnectionParams();   // ConnectionParams 타입 변수 생성 및 선언
+                        params.setOption(1).setId(id).setPw(pw);  // 매개변수로 jsp옵션, id, pw 넘김
                         login = ServerConnector.connect(params); // Option 1 = 로그인
                         if(login.equals("1")){
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);    // 로그인 버튼 클릭시 메인 액티비티로 이동(서버랑 통신해야함)
