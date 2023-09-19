@@ -13,13 +13,14 @@
 Connection conn = null;
 Statement stmt = null;
 ResultSet rs = null;
+ResultSet rs1 = null;
 int result = 0;
 String userId = null;
 String userPw = null;
 String query = null;
 JSONArray jsonArray = new JSONArray();
 System.out.println("Create userinfo obj");
-
+String mode ="2";								// 1 이용기록, 2 현재 대출기록
 userId = request.getParameter("userid");
 
 try {
@@ -27,24 +28,45 @@ try {
 	System.out.println("DB Driver On");
 	conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "BOOKDB", "1234");
 	System.out.println("DB Connecting"); 				// 도서위치추적시스템 데이터베이스에 연결
-    query = "select 책제목,대여일,반납예정일 from v_info where 회원ID =" +"'"+userId+"'";
-    stmt = conn.createStatement();
-    rs = stmt.executeQuery(query);
-    while(rs.next()) {
-       JSONObject json = new JSONObject();
-       json.put("책제목",rs.getString(1));
-       json.put("대여일",rs.getDate(2));
-       json.put("반납일",rs.getDate(3));
-       jsonArray.add(json);
-    }
+	if (mode.equals("1")){
+		query = "select 제목,저자,출판사,도서이미지,대여일,반납일 from v_usage where 회원ID =" +"'"+userId+"'"; 
+	    stmt = conn.createStatement();
+	    rs = stmt.executeQuery(query);
+		while(rs.next()) {
+	        JSONObject json = new JSONObject();
+	        json.put("제목",rs.getString(1));
+	        json.put("저자",rs.getString(2));
+	        json.put("출판사",rs.getString(3));
+	        json.put("도서이미지",rs.getString(4));
+	        json.put("대여일",rs.getDate(5));
+	        json.put("반납일",rs.getDate(6));
+	        jsonArray.add(json);
+	     }
+	} else if(mode.equals("2")){
+		query = "select 제목,저자,출판사,도서이미지,대여일,반납예정일 from v_loan where 회원ID =" +"'"+userId+"'";
+	    stmt = conn.createStatement();
+	    rs1 = stmt.executeQuery(query);
+		while(rs1.next()) {
+	        JSONObject json = new JSONObject();
+	        json.put("제목",rs1.getString(1));
+	        json.put("저자",rs1.getString(2));
+	        json.put("출판사",rs1.getString(3));
+	        json.put("도서이미지",rs1.getString(4));
+	        json.put("대여일",rs1.getDate(5));
+	        json.put("반납예정일",rs1.getDate(6));
+	        jsonArray.add(json);
+	     }
+	}
         out.println(jsonArray);
 	conn.close();
 } catch (Exception e) {
 	e.printStackTrace();
 } finally {
 	try {
-		if (rs != null)
+		if (rs != null || rs1 != null){
 	rs.close();
+	rs1.close();
+	}
 		if (conn != null)
 	conn.close();
 	} catch (Exception e) {
