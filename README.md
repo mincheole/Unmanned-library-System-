@@ -34,7 +34,7 @@
 ### ERD:Entity-Relationship Diagram(개체-관계 다이어그램)
 <br>
 
-![erd 최종](https://github.com/mincheole/Unmanned-library-System-/assets/106231571/0da6eecc-43bb-428d-85ab-4c425cea1d93)
+![erd 0921](https://github.com/mincheole/Unmanned-library-System-/assets/106231571/7984dda6-cf3e-4e1f-9724-5b219a398597)
 <br>
 <br>
 
