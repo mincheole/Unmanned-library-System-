@@ -5,13 +5,6 @@
     android:orientation="vertical">
     <!--대출반납 프래그먼트 레이아웃-->
 
-    <TextView
-        android:id="@+id/tv_UID"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="UID"
-        android:textSize="40sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,7 +17,7 @@
             android:layout_width="130dp"
             android:layout_height="130dp"
             android:text="대출"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             android:textSize="30sp"
             android:textStyle="bold"
             android:layout_marginHorizontal="20dp"/>
@@ -34,7 +27,7 @@
             android:layout_width="130dp"
             android:layout_height="130dp"
             android:text="반납"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             android:textSize="30sp"
             android:textStyle="bold"
             android:layout_marginHorizontal="20dp"/>

@@ -45,12 +45,12 @@ public class MainActivity extends AppCompatActivity{
     private FragmentManager fm;
     private FragmentTransaction ft;
     private int SearchCount = 0; //검색 객체 구분 변수
-    private Frag_home fh; //홈 화면 객체 fh
-    private Frag_map fmp; //도서관 맵 화면 객체 fmp
-    private Frag_Rentalinfo fb; //대여정보 화면 객체 fb
-    private Frag_search fs; //검색화면 객체 fs
+    private Frag_home f_home; //홈 화면 객체
+    private Frag_map f_map; //도서관 맵 화면 객체
+    private Frag_Rentalinfo f_rentalInfo; //대여정보 화면 객체
+    private Frag_search f_search; //검색화면 객체
     private Frag_search fs2;//교체용 검색화면 객체
-    private Frag_loan fl;
+    private Frag_loan f_loan;
     private Button btn_search;//검색창 옆 검색 버튼
     private String jdata;
     private JSONArray jsonArray;
@@ -139,12 +139,12 @@ public class MainActivity extends AppCompatActivity{
                 return true;
             }
         });
-        fh = new Frag_home();
-        fmp = new Frag_map();
-        fb = new Frag_Rentalinfo();
-        fs = new Frag_search();
+        f_home = new Frag_home();
+        f_map = new Frag_map();
+        f_rentalInfo = new Frag_Rentalinfo();
+        f_search = new Frag_search();
         fs2 = new Frag_search();
-        fl = new Frag_loan();
+        f_loan = new Frag_loan();
         setFrag(0); //시작 fragment 화면 지정
     }
 
@@ -180,9 +180,9 @@ public class MainActivity extends AppCompatActivity{
     protected void onNewIntent(Intent intent) {     // NFC 구현시 onResume()과 같은 곳에 구현하는게 좋음
         super.onNewIntent(intent);
         Log.v("MainActivity", "MainActivity");
-        fl = (Frag_loan) getSupportFragmentManager().findFragmentByTag("tag_loan"); // getSupportFragmentManager(): 프래그먼트 매니저에 접근
-        if (fl != null) {
-            fl.handleIntent(intent);
+        f_loan = (Frag_loan) getSupportFragmentManager().findFragmentByTag("tag_loan"); // getSupportFragmentManager(): 프래그먼트 매니저에 접근
+        if (f_loan != null) {
+            f_loan.handleIntent(intent);
         }
     }
 
@@ -193,15 +193,15 @@ public class MainActivity extends AppCompatActivity{
         ft = fm.beginTransaction();
         switch (n){
             case 0:
-                ft.replace(R.id.main_frame, fh);
+                ft.replace(R.id.main_frame, f_home);
                 ft.commit();
                 break;
             case 1:
-                ft.replace(R.id.main_frame, fmp);
+                ft.replace(R.id.main_frame, f_map);
                 ft.commit();
                 break;
             case 2:
-                ft.replace(R.id.main_frame, fb);
+                ft.replace(R.id.main_frame, f_rentalInfo);
                 ft.commit();
                 break;
             case 3:
@@ -211,13 +211,13 @@ public class MainActivity extends AppCompatActivity{
                     SearchCount--;
                 }
                 else{
-                    ft.replace(R.id.main_frame, fs);
+                    ft.replace(R.id.main_frame, f_search);
                     SearchCount++;
                 }
                 ft.commit();
                 break;
             case 4:
-                ft.replace(R.id.main_frame, fl, "tag_loan");
+                ft.replace(R.id.main_frame, f_loan, "tag_loan");
                 ft.commit();
                 break;
         }
@@ -226,7 +226,7 @@ public class MainActivity extends AppCompatActivity{
     class t1 extends Thread{
         public void run() {
             ServerConnector.ConnectionParams params = new ServerConnector.ConnectionParams();
-            params.setTitle(4, title, mode);
+            params.setOption(4).setTitle(title, mode);
             jdata = ServerConnector.connect(params);  //Jsp로 부터 값을 전달 받음
             if(jdata.equals("실패")){ //Jsp 연결 실패 시 Toast 메세지로 띄워줌
                 Log.v("FailedSearch", "Fail");
@@ -254,7 +254,7 @@ public class MainActivity extends AppCompatActivity{
                         mybitmap = BitmapFactory.decodeStream(is);//이미지 Stream을 비트맵으로 저장*/
                         bookDataArrayList.add(new BookData(imageUrl,tm,author,publisher,summary));//값들을 List에 저장
                     }
-                    fs.setData(bookDataArrayList);//검색화면으로 데이터 List를 전달
+                    f_search.setData(bookDataArrayList);//검색화면으로 데이터 List를 전달
                     fs2.setData(bookDataArrayList);
                     setFrag(3);//App Ui 화면 전환
 
@@ -266,51 +266,4 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
-//    protected String connect(int jspOption) {     // JSP와 통신 메소드
-//        StringBuffer buf = new StringBuffer();  // JSP 화면에 뜨는 정보들 저장할 변수
-//        String urlPath = null;
-//
-//        switch (jspOption) {     // 로그인 화면이랑 대여정보 화면에서 connect() 메소드를 사용하기 위함(1일때 로그인, 2일때 대여정보)
-//            case 1:
-//                urlPath = "http://whereisthebook.kro.kr:8080/DbConn1/f_login.jsp?userid=" + id + "&userpw=" + pw;
-//                break;
-//            case 2:
-//                urlPath = "http://whereisthebook.kro.kr:8080/DbConn1/f_userinfo.jsp?userid="+id;
-//                break;
-//            case 3:
-//                urlPath = "http://whereisthebook.kro.kr:8080/DbConn1/f_rfidkey?rfid="+rfid;
-//            case 4:
-//                urlPath = "http://whereisthebook.kro.kr:8080/DbConn1/f_bookdb.jsp?keyword=" + text + "&mode=" + mode;   // 제목,저자 입력받아야함(한글 X)
-//        }
-//
-//        try {
-//            URL url = new URL(urlPath);//Jsp 경로를 변수에 저장
-//            HttpURLConnection con = (HttpURLConnection) url.openConnection();//안드로이드 Http 통신으로 연결
-//            if(con != null){
-//                con.setRequestMethod("POST");    // Http를 GET 또는 POST 방식으로 설정
-//                con.setDoInput(true);
-//                con.setDoOutput(true);
-////                int code = con.getResponseCode();   // CODE가 200이면 접속성공(단지 사이트 접속여부, 로그인여부X)
-////                Log.i("mytag", "RESOPNSE_CODE"+code);   // 로그에서 코드 실행결과(사이트 접속시 code200) 확인코드
-//
-//                InputStream input = con.getInputStream(); //Stream 형식으로 전환
-//                BufferedReader reader = new BufferedReader(new InputStreamReader(input));//버퍼에 저장
-//
-//                String str = reader.readLine();//버퍼의 데이터를 String 형식으로 전환
-//                while(str!=null){
-//                    buf.append(str);//버퍼의 모든 데이터를 변수에 저장
-//                    str = reader.readLine();
-//                }
-//
-//                reader.close();
-//            }
-//            con.disconnect();//Http 연결 해제
-//            Log.i("mytag", "buf "+ buf.toString());     // 로그에서 코드 실행결과(buf값) 확인코드
-//            return buf.toString();    // buf를 string 타입으로(json 값들을 받기 위해해)
-//
-//       }catch (Exception e){
-//            Log.i("mytag", e.getLocalizedMessage());    // 로그에서 코드 실행결과 확인코드
-//        }
-//        return "실패";
-//    }
 }
