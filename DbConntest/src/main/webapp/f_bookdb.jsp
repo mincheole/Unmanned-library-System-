@@ -13,29 +13,26 @@
     pageEncoding="UTF-8"%>
 
 <%
-	Connection conn = null;
-	CallableStatement cstmt = null;
-	CallableStatement cstmt1 = null;
-	ResultSet rs =null;
-	ResultSet rs1 = null;
-	JSONArray jsonArray = new JSONArray();
-	System.out.println("Create bookdb obj");
-
-	String keyword = request.getParameter("keyword");
-	String mode = request.getParameter("mode");
-	//mode = "1";
-	//keyword ="";R
-
-
+Connection conn = null;
+CallableStatement cstmt = null;
+CallableStatement cstmt1 = null;
+ResultSet rs =null;
+ResultSet rs1 = null;
+JSONArray jsonArray = new JSONArray();
+System.out.println("Create bookdb obj");
+String keyword = request.getParameter("search_keyword");
+String search_mode = request.getParameter("search_mode");      // mode의 값이 1 = 제목, 2면 저자
+//keyword = "";
+//search_mode="1";
 try{
 	Class.forName("oracle.jdbc.driver.OracleDriver"); 	// 오라클 드라이버 적재
 	System.out.println("DB Driver On");
 	conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "BOOKDB", "1234");
 
-	System.out.println("DB Connecting");			// 도서위치추적시스템 데이터베이스에 연결
-	if (mode.equals("1")){
+	System.out.println("DB Connecting");			// 도서위치추적시스템 데이터베이스에 연z결
+	if (search_mode.equals("1")){
 		cstmt = conn.prepareCall("{call p_search1(?,?)}"); 	// 검색기능을 가진 프로시저 호출
-	} else if(mode.equals("2")){
+	} else if(search_mode.equals("2")){
 		cstmt = conn.prepareCall("{call p_search2(?,?)}"); 	// 검색기능을 가진 프로시저 호출
 	}
 	cstmt.setString(1, keyword);								// ""안의 문자열(검색키워드)이 프로시저의 IN 파라미터로 전달
