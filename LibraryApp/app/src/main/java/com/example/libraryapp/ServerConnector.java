@@ -1,6 +1,5 @@
 package com.example.libraryapp;
 
-import android.content.Context;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -16,7 +15,8 @@ public class ServerConnector {
         String pw;
         String rfid;
         String title;
-        String mode;
+        String searchMode;
+        String rentalMode;
 
         public ConnectionParams setOption(int jspOption){    // 파라미터 객체 + 빌더 패턴
             this.jspOption = jspOption;     // jsp에 접속할 Option 변수
@@ -33,14 +33,15 @@ public class ServerConnector {
             return this;
         }
 
-        public ConnectionParams setRfid(String rfid){
+        public ConnectionParams setRfid(String rfid, String rMode){
             this.rfid = rfid;       // 도서RFID
+            this.rentalMode = rMode;
             return this;
         }
 
-        public ConnectionParams setTitle(String title, String mode){
+        public ConnectionParams setTitle(String title, String sMode){
             this.title = title;     // 책제목
-            this.mode = mode;       // 검색 옵션(저자, 제목)
+            this.searchMode = sMode;       // 검색 옵션(저자, 제목)
             return this;
         }
 
@@ -55,13 +56,13 @@ public class ServerConnector {
                 urlPath = "http://whereisthebook.kro.kr:8080/DbConn1/f_login.jsp?userid=" + params.id + "&userpw=" + params.pw;
                 break;
             case 2:     // 대여정보
-                urlPath = "http://whereisthebook.kro.kr:8080/DbConn1/f_userinfo.jsp?userid="+params.id;
+                urlPath = "http://whereisthebook.kro.kr:8080/DbConn1/f_userinfo.jsp?see_mode=1" +"&userid="+params.id;
                 break;
             case 3:     // 대출반납RFID 및 사용자id 전송
-                urlPath = "http://whereisthebook.kro.kr:8080/DbConn1/f_rfidkey.jsp?rfid="+params.rfid + "&userid=" + params.id;
+                urlPath = "http://whereisthebook.kro.kr:8080/DbConn1/f_usage.jsp?phone_rfid="+params.rfid + "&userid=" + params.id + "&use_mode=" + params.rentalMode;
                 break;
             case 4:     // 책검색
-                urlPath = "http://whereisthebook.kro.kr:8080/DbConn1/f_bookdb.jsp?keyword=" + params.title + "&mode=" + params.mode;   // 제목,저자 입력받아야함(한글 X)
+                urlPath = "http://whereisthebook.kro.kr:8080/DbConn1/f_bookdb.jsp?search_keyword=" + params.title + "&search_mode=" + params.searchMode;   // 제목,저자 입력받아야함(한글 X)
                 break;
         }
 
@@ -87,14 +88,14 @@ public class ServerConnector {
                 reader.close();
             }
             con.disconnect();//Http 연결 해제
-            Log.i("mytag", "buf "+ buf.toString());     // 로그에서 코드 실행결과(buf값) 확인코드
+            Log.i("mytag1", "buf "+ buf.toString());     // 로그에서 코드 실행결과(buf값) 확인코드
 //            Log.v("try", "P4");
             return buf.toString();    // buf를 string 타입으로(json 값들을 받기 위해해)
 
         }catch (Exception e){
             Log.v("catch", "실패");
             if(e.getLocalizedMessage() != null)
-                Log.i("mytag", e.getLocalizedMessage());    // 로그에서 코드 실행결과 확인코드
+                Log.i("mytag2", e.getLocalizedMessage());    // 로그에서 코드 실행결과 확인코드
         }
         return "실패";
     }
