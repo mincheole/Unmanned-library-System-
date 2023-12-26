@@ -17,10 +17,11 @@ ResultSet rs1 = null;
 int result = 0;
 String userId = null;
 String userPw = null;
+String mode = null;
 String query = null;
 JSONArray jsonArray = new JSONArray();
 System.out.println("Create userinfo obj");
-String mode ="2";								// 1 이용기록, 2 현재 대출기록
+mode = request.getParameter("see_mode");// 1 현재 대출 기록, 2 전체 이용 기록
 userId = request.getParameter("userid");
 
 try {
@@ -29,17 +30,6 @@ try {
 	conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "BOOKDB", "1234");
 	System.out.println("DB Connecting"); 				// 도서위치추적시스템 데이터베이스에 연결
 	if (mode.equals("1")){
-		query = "select 제목,대여일,반납일 from v_usage where 회원ID =" +"'"+userId+"'"; 
-	    stmt = conn.createStatement();
-	    rs = stmt.executeQuery(query);
-		while(rs.next()) {
-	        JSONObject json = new JSONObject();
-	        json.put("제목",rs.getString(1));
-	        json.put("대여일",rs.getDate(2));
-	        json.put("반납일",rs.getDate(3));
-	        jsonArray.add(json);
-	    }
-	} else if(mode.equals("2")){
 		query = "select 제목,대여일,반납예정일 from v_loan where 회원ID =" +"'"+userId+"'";
 	    stmt = conn.createStatement();
 	    rs1 = stmt.executeQuery(query);
@@ -48,6 +38,17 @@ try {
 	        json.put("제목",rs1.getString(1));
 	        json.put("대여일",rs1.getDate(2));
 	        json.put("반납예정일",rs1.getDate(3));
+	        jsonArray.add(json);
+	    }
+	} else if(mode.equals("2")){
+		query = "select 제목,대여일,반납일 from v_usage where 회원ID =" +"'"+userId+"'"; 
+	    stmt = conn.createStatement();
+	    rs = stmt.executeQuery(query);
+		while(rs.next()) {
+	        JSONObject json = new JSONObject();
+	        json.put("제목",rs.getString(1));
+	        json.put("대여일",rs.getDate(2));
+	        json.put("반납일",rs.getDate(3));
 	        jsonArray.add(json);
 	     }
 	}

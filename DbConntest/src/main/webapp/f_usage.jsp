@@ -13,7 +13,7 @@
 
 <%
 Connection conn = null;
-String phone_rfid;
+String phone_rfid=null;
 String user_id = null;
 CallableStatement cstmt = null;
 ResultSet rs =null;
@@ -21,10 +21,10 @@ System.out.println("Create usage obj");
 phone_rfid = request.getParameter("phone_rfid"); 	//리더기에서 넘긴 정보 받음
 user_id = request.getParameter("userid"); 			//리더기에서 넘긴 정보 받음
 String use_mode = request.getParameter("use_mode");
-use_mode = "2";
-System.out.println("rifd = " + phone_rfid);
-user_id = "cc33";
-phone_rfid = "E38D5695";
+//use_mode = "2";
+System.out.println("rfid = " + phone_rfid);
+System.out.println("id = " + user_id);
+System.out.println("mode = " + use_mode);
 
 
 try{
@@ -32,7 +32,7 @@ try{
 	System.out.println("DB Driver On");
 	conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "BOOKDB", "1234");
 	System.out.println("DB Connecting");
-	
+	System.out.println("rfid2 = " + phone_rfid);
 	if (use_mode.equals("1")){
 		cstmt = conn.prepareCall("{call p_return(?,?)}"); 	// 검색기능을 가진 프로시저 호출
 	} else if(use_mode.equals("2")){
