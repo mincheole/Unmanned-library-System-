@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment;
 public class Frag_loan extends Fragment { //대출반납 프래그먼트
     private View view;
     private String rid;
+    private String rentalMode;
     protected Button btn_checkout, btn_return;
     protected progressDialog customProgressDialog;
 
@@ -38,21 +39,21 @@ public class Frag_loan extends Fragment { //대출반납 프래그먼트
         customProgressDialog.setCancelable(false);      // 주변 화면 클릭해도 종료 불가능!
 
         btn_checkout = view.findViewById(R.id.btn_checkout);
-        btn_checkout.setOnClickListener(new View.OnClickListener() {
+        btn_checkout.setOnClickListener(new View.OnClickListener() {    // 대출버튼 클릭 리스너
             @Override
             public void onClick(View view) {
                 customProgressDialog.show();    // 로딩 프로그래스 동작
+                rentalMode = "2";
                 ((MainActivity)getActivity()).frag_onResume();  // 프래그먼트에서 메인액티비티 안 frag_onResume함수 호출
-
-
             }
         });
 
         btn_return = view.findViewById(R.id.btn_return);
-        btn_return.setOnClickListener(new View.OnClickListener() {
+        btn_return.setOnClickListener(new View.OnClickListener() {      // 반납버튼 클릭 리스너
             @Override
             public void onClick(View view) {
                 customProgressDialog.show();    // 로딩 프로그래스 동작
+                rentalMode = "1";
                 ((MainActivity)getActivity()).frag_onResume();  // 프래그먼트에서 메인액티비티 안 frag_onResume함수 호출
             }
         });
@@ -73,7 +74,7 @@ public class Frag_loan extends Fragment { //대출반납 프래그먼트
     class rfidConnect extends Thread{   // RFID 서버로 전송 메서드
         public void run(){
             ServerConnector.ConnectionParams params = new ServerConnector.ConnectionParams();
-            params.setOption(3).setRfid(rid);     // 파라미터 옵션 및 RFID 설정
+            params.setOption(3).setRfid(rid, rentalMode);     // 파라미터 옵션 및 RFID 설정
             ServerConnector.connect(params);
         }
     }
