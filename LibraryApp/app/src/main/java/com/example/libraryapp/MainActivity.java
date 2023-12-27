@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity{
     private JSONArray jsonArray;
     private String imageUrl;
     private String tm;
-    private Bitmap mybitmap;
     private BookInfo bi;
     private String[] items = {"제목","저자"};
     private String title,mode;
