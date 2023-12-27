@@ -7,11 +7,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,21 +21,40 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class Frag_Rentalinfo extends Fragment { //대여정보 프래그먼트
+public class Frag_Rentalinfo extends Fragment implements View.OnClickListener{ //대여정보 프래그먼트
     ArrayList<rentalData> rentaldata;    //어레이형식
     private Handler handler;
     ListView rentalList;
     private static CustomAdapter customAdapter;
+    private Button btn_allrentalinfo;
+    private Frag_AllRentalInfo frag_allRentalInfo;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 //        handler = new Handler(Looper.getMainLooper());  // 쓰레드 사용을 위한 핸들러 생성(getMainLooper() 메인쓰레드호출)
         View view = inflater.inflate(R.layout.frag_rentalinfo, container, false); //레이아웃 inflate로 객체화
+        btn_allrentalinfo = view.findViewById(R.id.btn_allRentalInfo);  // 프래그먼트 안에 버튼 생성을 위함
+        btn_allrentalinfo.setOnClickListener(this);
         rentaldata = new ArrayList<>();
 
         new BackgroundThread().start();    // 쓰레드 호출
         return view;
+    }
+
+    @Override
+    public void onClick(View view) {
+        replaceFragment();
+    }
+
+    private void replaceFragment(){     // 프래그먼트(대여기록) 위에 프래그먼트(모든 대여기록)
+        frag_allRentalInfo = new Frag_AllRentalInfo();
+        Log.v("replaceFragment", "startTest");
+        FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction(); // getChildFragmentManager(프래그먼트 위 프래그먼트 호출시)
+        fragmentTransaction.replace(R.id.frag_rental, frag_allRentalInfo);
+//        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+        Log.v("replaceFragment", "endTest");
     }
 
     private class BackgroundThread extends Thread {

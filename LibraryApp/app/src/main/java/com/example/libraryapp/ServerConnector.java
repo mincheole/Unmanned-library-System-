@@ -73,14 +73,11 @@ public class ServerConnector {
                 con.setRequestMethod("POST");    // Http를 GET 또는 POST 방식으로 설정
                 con.setDoInput(true);
                 con.setDoOutput(true);
-//                Log.v("try", "P1");
                 InputStream input = con.getInputStream(); //Stream 형식으로 전환
-//                Log.v("try", "P2");
                 BufferedReader reader = new BufferedReader(new InputStreamReader(input));//버퍼에 저장
 
                 String str = reader.readLine();//버퍼의 데이터를 String 형식으로 전환
                 while(str!=null){
-//                    Log.v("try", "P3");
                     buf.append(str);//버퍼의 모든 데이터를 변수에 저장
                     str = reader.readLine();
                 }
@@ -89,7 +86,6 @@ public class ServerConnector {
             }
             con.disconnect();//Http 연결 해제
             Log.i("mytag1", "buf "+ buf.toString());     // 로그에서 코드 실행결과(buf값) 확인코드
-//            Log.v("try", "P4");
             return buf.toString();    // buf를 string 타입으로(json 값들을 받기 위해해)
 
         }catch (Exception e){
