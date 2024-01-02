@@ -23,7 +23,7 @@ JSONArray jsonArray = new JSONArray();
 System.out.println("Create locationtrack obj");
 String search_bookisbn = request.getParameter("search_bookisbn");
 System.out.println("parameter receive success");
-search_bookisbn ="9788970504773";						// 통신 실패시 테스트용
+//search_bookisbn ="9788970504773";						// 통신 실패시 테스트용
 try {
 	Class.forName("oracle.jdbc.driver.OracleDriver"); // 오라클 드라이버 적재
 	System.out.println("DB Driver On");
@@ -35,7 +35,6 @@ try {
 	while (rs1.next()) {
 		JSONObject json = new JSONObject(); // json 객체 생성
 		booknumber = rs1.getString(1);
-		out.println(booknumber);
 		json.put("도서번호", booknumber);
 		if (rs1.getString(2)==null) {
 			json.put("위치", "위치추적불가");
