@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity{
     private Frag_search f_search; //검색화면 객체
     private Frag_search fs2;//교체용 검색화면 객체
     private Frag_loan f_loan;
+    private Frag_AllRentalInfo f_allRentalInfo;
     private Button btn_search;//검색창 옆 검색 버튼
     private String jdata;
     private JSONArray jsonArray;
@@ -187,7 +188,7 @@ public class MainActivity extends AppCompatActivity{
 
     //fragment 교체 함수
     //fragment 사용시 필수인듯 함...암튼 써야댐
-    private void setFrag(int n){
+    public void setFrag(int n){
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
         switch (n){
@@ -201,6 +202,7 @@ public class MainActivity extends AppCompatActivity{
                 break;
             case 2:
                 ft.replace(R.id.main_frame, f_rentalInfo);
+                ft.addToBackStack(null);
                 ft.commit();
                 break;
             case 3:
@@ -219,6 +221,12 @@ public class MainActivity extends AppCompatActivity{
                 ft.replace(R.id.main_frame, f_loan, "tag_loan");
                 ft.commit();
                 break;
+
+            case 5:
+                f_allRentalInfo = new Frag_AllRentalInfo();
+                ft.replace(R.id.main_frame, f_allRentalInfo);
+                ft.addToBackStack(null);
+                ft.commit();
         }
     }
 

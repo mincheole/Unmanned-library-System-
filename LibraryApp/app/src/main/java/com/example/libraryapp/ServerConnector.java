@@ -56,13 +56,16 @@ public class ServerConnector {
                 urlPath = "http://whereisthebook.kro.kr:8080/DbConn1/f_login.jsp?userid=" + params.id + "&userpw=" + params.pw;
                 break;
             case 2:     // 대여정보
-                urlPath = "http://whereisthebook.kro.kr:8080/DbConn1/f_userinfo.jsp?see_mode=1" +"&userid="+params.id;
+                urlPath = "http://whereisthebook.kro.kr:8080/DbConn1/f_userinfo.jsp?userid="+params.id;
                 break;
             case 3:     // 대출반납RFID 및 사용자id 전송
                 urlPath = "http://whereisthebook.kro.kr:8080/DbConn1/f_usage.jsp?phone_rfid="+params.rfid + "&userid=" + params.id + "&use_mode=" + params.rentalMode;
                 break;
             case 4:     // 책검색
                 urlPath = "http://whereisthebook.kro.kr:8080/DbConn1/f_bookdb.jsp?search_keyword=" + params.title + "&search_mode=" + params.searchMode;   // 제목,저자 입력받아야함(한글 X)
+                break;
+            case 5:
+                urlPath = "http://whereisthebook.kro.kr:8080/DbConn1/f_usertotalinfo.jsp?userid="+params.id;
                 break;
         }
 
