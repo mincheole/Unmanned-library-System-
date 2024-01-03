@@ -23,17 +23,17 @@ try {
 	System.out.println("DB Driver On");
 	conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "BOOKDB", "1234");
 	System.out.println("DB Connecting"); 				// 도서위치추적시스템 데이터베이스에 연결
-	query = "select 제목,대여일,반납예정일 from v_loan where 회원ID =" +"'"+userId+"'";
+	query = "select 제목,대여일,반납일 from v_usage where 회원ID =" +"'"+userId+"'"; 
     stmt = conn.createStatement();
     rs = stmt.executeQuery(query);
 	while(rs.next()) {
         JSONObject json = new JSONObject();
         json.put("제목",rs.getString(1));
         json.put("대여일",rs.getDate(2));
-        json.put("반납예정일",rs.getDate(3));
+        json.put("반납일",rs.getDate(3));
         jsonArray.add(json);
-    }
-    out.println(jsonArray);
+     }
+	out.println(jsonArray);
 } catch (Exception e) {
 	e.printStackTrace();
 } finally {
@@ -43,6 +43,6 @@ try {
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
-	System.out.println("userinfo jsp end");
+	System.out.println("usertotalinfo jsp end");
 }
 %>
