@@ -44,24 +44,24 @@ public class Frag_Rentalinfo extends Fragment implements View.OnClickListener{ /
 
     @Override
     public void onClick(View view) {
-        replaceFragment();
+        ((MainActivity)requireActivity()).setFrag(5);   // 모든 대출기록 호출
     }
 
-    private void replaceFragment(){     // 프래그먼트(대여기록) 위에 프래그먼트(모든 대여기록)
-        frag_allRentalInfo = new Frag_AllRentalInfo();
-        Log.v("replaceFragment", "startTest");
-        FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction(); // getChildFragmentManager(프래그먼트 위 프래그먼트 호출시)
-        fragmentTransaction.replace(R.id.frag_rental, frag_allRentalInfo);
+//    private void replaceFragment(){     // 프래그먼트(대여기록) 위에 프래그먼트(모든 대여기록)
+//        frag_allRentalInfo = new Frag_AllRentalInfo();
+//        Log.v("replaceFragment", "startTest");
+//        FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();// getChildFragmentManager(프래그먼트 위 프래그먼트 호출시)
+//        getChildFragmentManager().popBackStackImmediate(null, getChildFragmentManager().POP_BACK_STACK_INCLUSIVE);
+//        fragmentTransaction.replace(R.id.frag_rental, frag_allRentalInfo);
 //        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-        Log.v("replaceFragment", "endTest");
-    }
+//        fragmentTransaction.commit();
+//        Log.v("replaceFragment", "endTest");
+//    }
 
     private class BackgroundThread extends Thread {
         @Override
         public void run() {
             // 백그라운드 작업 수행
-
             ServerConnector.ConnectionParams params = new ServerConnector.ConnectionParams();
             params.setOption(2);
             String result = ServerConnector.connect(params);
