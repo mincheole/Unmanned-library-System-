@@ -62,7 +62,6 @@ public class Frag_loan extends Fragment { //대출반납 프래그먼트
     }
 
     public void handleIntent(Intent intent) {   // NFC 스캔 함수
-        Log.v("handle", "handle");
         if (intent.getAction().equals(NfcAdapter.ACTION_TAG_DISCOVERED)) {
             rid = ByteArrayToHexString(intent.getByteArrayExtra(NfcAdapter.EXTRA_ID));
             Log.v("rid", rid);

@@ -10,13 +10,14 @@ import java.net.URL;
 
 public class ServerConnector {
     public static class ConnectionParams{   // 각 멤버변수(파라미터)를 가진 클래스 생성
-        int jspOption;
+        private int jspOption;
         static String id;
-        String pw;
-        String rfid;
-        String title;
-        String searchMode;
-        String rentalMode;
+        private String pw;
+        private String rfid;
+        private String title;
+        private String searchMode;
+        private String rentalMode;
+        private String isbn;
 
         public ConnectionParams setOption(int jspOption){    // 파라미터 객체 + 빌더 패턴
             this.jspOption = jspOption;     // jsp에 접속할 Option 변수
@@ -45,6 +46,11 @@ public class ServerConnector {
             return this;
         }
 
+        public ConnectionParams setIsbn(String isbn){
+            this.isbn = isbn;   // isbn
+            return this;
+        }
+
     }
 
     public static String connect(ConnectionParams params) {     // JSP와 통신 메소드, 파라미터를 담은 클래스 타입의 객체를 매개변수로 넘겨받음.
@@ -64,8 +70,11 @@ public class ServerConnector {
             case 4:     // 책검색
                 urlPath = "http://whereisthebook.kro.kr:8080/DbConn1/f_bookdb.jsp?search_keyword=" + params.title + "&search_mode=" + params.searchMode;   // 제목,저자 입력받아야함(한글 X)
                 break;
-            case 5:
+            case 5:     // 이전 대여 기록
                 urlPath = "http://whereisthebook.kro.kr:8080/DbConn1/f_usertotalinfo.jsp?userid="+params.id;
+                break;
+            case 6:     // 책 위치 정보
+                urlPath = "http://whereisthebook.kro.kr:8080/DbConn1/f_locationtrack.jsp?search_bookisbn="+params.isbn;
                 break;
         }
 
@@ -88,13 +97,13 @@ public class ServerConnector {
                 reader.close();
             }
             con.disconnect();//Http 연결 해제
-            Log.i("mytag1", "buf "+ buf.toString());     // 로그에서 코드 실행결과(buf값) 확인코드
+            Log.i("HttpResult", "buf "+ buf.toString());     // 로그에서 코드 실행결과(buf값) 확인코드
             return buf.toString();    // buf를 string 타입으로(json 값들을 받기 위해해)
 
         }catch (Exception e){
-            Log.v("catch", "실패");
+            Log.v("Catch1", "실패");
             if(e.getLocalizedMessage() != null)
-                Log.i("mytag2", e.getLocalizedMessage());    // 로그에서 코드 실행결과 확인코드
+                Log.i("Catch2", e.getLocalizedMessage());    // 로그에서 코드 실행결과 확인코드
         }
         return "실패";
     }
