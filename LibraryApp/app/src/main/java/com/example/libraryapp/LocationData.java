@@ -1,8 +1,8 @@
 package com.example.libraryapp;
 
 public class LocationData {
-    String bookName;
-    String bookLocation;
+    private String bookName;
+    private String bookLocation;
 
     public LocationData(String bookName, String bookLocation) {
         this.bookName = bookName;

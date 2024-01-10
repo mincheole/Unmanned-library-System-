@@ -39,7 +39,7 @@ public class RentalAdapter extends RecyclerView.Adapter<RentalAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView bookName, startDate, endDate;
+        private TextView bookName, startDate, endDate;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             bookName = itemView.findViewById(R.id.allbookName);

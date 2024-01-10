@@ -22,7 +22,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class LoginActivity extends AppCompatActivity {
-
     private Button login_btn;   // 로그인 버튼
     private EditText et_id, et_pw;
     protected String id, pw;

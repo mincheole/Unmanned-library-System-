@@ -22,7 +22,6 @@ public class Frag_AllRentalInfo extends Fragment {
     private ArrayList<AllrentalinfoData> rentalDateList = new ArrayList<>();
     private RentalAdapter rentalAdapter;
     private RecyclerView recyclerView;
-    private LinearLayoutManager linearLayoutManager;
 
     @Nullable
     @Override
@@ -31,10 +30,7 @@ public class Frag_AllRentalInfo extends Fragment {
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_allrentalinfo);   // 리사이클러 초기화
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity().getApplicationContext(), DividerItemDecoration.VERTICAL));   // 구분선 옵션
 
-//        rentalAdapter = new RentalAdapter(getActivity(), rentalDateList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-//        recyclerView.setHasFixedSize(true);
-//        recyclerView.setAdapter(rentalAdapter);
 
         new BackgroundThread().start();    // 쓰레드 호출
         return rootView;
@@ -43,7 +39,7 @@ public class Frag_AllRentalInfo extends Fragment {
     private class BackgroundThread extends Thread {
         @Override
         public void run() {
-            // 백그라운드 작업 수행
+            // 백그라운드 작업 수행(서버 접속)
             ServerConnector.ConnectionParams params = new ServerConnector.ConnectionParams();
             params.setOption(5);
             String result = ServerConnector.connect(params);
@@ -73,5 +69,4 @@ public class Frag_AllRentalInfo extends Fragment {
             });
         }
     }
-
 }
