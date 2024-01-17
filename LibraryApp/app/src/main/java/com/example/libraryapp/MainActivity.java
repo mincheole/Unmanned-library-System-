@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity{
         Log.v("onResume", "onResume");
         /* PendingIntent : NFC가 감지되면 Intent를 생성(특정시점(나중에) Intent 생성)
         FLAG_ACTIVITY_SINGLE_TOP : 중복 호출 방지(스택에 기존의 같은게 있다면 새로 호출X) */
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), PendingIntent.FLAG_MUTABLE);
         IntentFilter filter = new IntentFilter();   // IntenFilter 생성
         filter.addAction(NfcAdapter.ACTION_TAG_DISCOVERED); // Intent필터 지정(NFC 스캔 됐을 때로)
         filter.addAction(NfcAdapter.ACTION_NDEF_DISCOVERED);
