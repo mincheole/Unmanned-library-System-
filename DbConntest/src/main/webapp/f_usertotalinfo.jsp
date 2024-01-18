@@ -30,7 +30,7 @@ try {
         JSONObject json = new JSONObject();
         json.put("제목",rs.getString(1));
         json.put("대여일",rs.getDate(2));
-        json.put("반납일",rs.getDate(3));
+        json.put("반납일",(rs.getDate(3)==null)?"":rs.getDate(3));
         jsonArray.add(json);
      }
 	out.println(jsonArray);
@@ -39,6 +39,7 @@ try {
 } finally {
 	try {
 		if (rs != null)	rs.close();
+		if (stmt != null) stmt.close();
 		if (conn != null) conn.close();
 	} catch (Exception e) {
 		e.printStackTrace();
