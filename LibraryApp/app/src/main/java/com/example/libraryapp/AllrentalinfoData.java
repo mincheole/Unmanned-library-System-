@@ -1,9 +1,9 @@
 package com.example.libraryapp;
 
 public class AllrentalinfoData {
-    String bookName;
-    String startDate;
-    String endDate;
+    private String bookName;
+    private String startDate;
+    private String endDate;
 
     public String getBookName() {
         return bookName;

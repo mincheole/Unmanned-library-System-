@@ -22,12 +22,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class Frag_Rentalinfo extends Fragment implements View.OnClickListener{ //대여정보 프래그먼트
-    ArrayList<rentalData> rentaldata;    //어레이형식
+    private ArrayList<rentalData> rentaldata;    //어레이형식
     private Handler handler;
-    ListView rentalList;
+    private ListView rentalList;
     private static CustomAdapter customAdapter;
     private Button btn_allrentalinfo;
-    private Frag_AllRentalInfo frag_allRentalInfo;
 
     @Nullable
     @Override
@@ -44,24 +43,13 @@ public class Frag_Rentalinfo extends Fragment implements View.OnClickListener{ /
 
     @Override
     public void onClick(View view) {
-        replaceFragment();
-    }
-
-    private void replaceFragment(){     // 프래그먼트(대여기록) 위에 프래그먼트(모든 대여기록)
-        frag_allRentalInfo = new Frag_AllRentalInfo();
-        Log.v("replaceFragment", "startTest");
-        FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction(); // getChildFragmentManager(프래그먼트 위 프래그먼트 호출시)
-        fragmentTransaction.replace(R.id.frag_rental, frag_allRentalInfo);
-//        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-        Log.v("replaceFragment", "endTest");
+        ((MainActivity)requireActivity()).setFrag(5);   // 모든 대출기록 호출
     }
 
     private class BackgroundThread extends Thread {
         @Override
         public void run() {
             // 백그라운드 작업 수행
-
             ServerConnector.ConnectionParams params = new ServerConnector.ConnectionParams();
             params.setOption(2);
             String result = ServerConnector.connect(params);
@@ -91,7 +79,6 @@ public class Frag_Rentalinfo extends Fragment implements View.OnClickListener{ /
             });
         }
     }
-
 }
 
 class rentalData{

@@ -9,7 +9,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Bitmap;
 import android.nfc.NfcAdapter;
 import android.nfc.tech.IsoDep;
 import android.nfc.tech.MifareClassic;
@@ -40,7 +39,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity{
-
     private BottomNavigationView bottomNavigationView; //하단 바
     private FragmentManager fm;
     private FragmentTransaction ft;
@@ -49,22 +47,20 @@ public class MainActivity extends AppCompatActivity{
     private Frag_map f_map; //도서관 맵 화면 객체
     private Frag_Rentalinfo f_rentalInfo; //대여정보 화면 객체
     private Frag_search f_search; //검색화면 객체
-    private Frag_search fs2;//교체용 검색화면 객체
+    private Frag_search f_search2;//교체용 검색화면 객체
     private Frag_loan f_loan;
+    private Frag_AllRentalInfo f_allRentalInfo;
     private Button btn_search;//검색창 옆 검색 버튼
     private String jdata;
     private JSONArray jsonArray;
     private String imageUrl;
-    private String tm;
-    private BookInfo bi;
+    private String bookTitle;
     private String[] items = {"제목","저자"};
     private String title,mode;
-    private String location;
-    ArrayList<BookData> bookDataArrayList;
+    private ArrayList<BookData> bookDataArrayList;
 
     private EditText searchView;
     public static Context context;
-
 
 
     @Override
@@ -104,7 +100,6 @@ public class MainActivity extends AppCompatActivity{
         });
 
 
-
         bottomNavigationView = findViewById(R.id.bottomNavi); //하단 바 (하단 네비게이션 바)
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -142,7 +137,7 @@ public class MainActivity extends AppCompatActivity{
         f_map = new Frag_map();
         f_rentalInfo = new Frag_Rentalinfo();
         f_search = new Frag_search();
-        fs2 = new Frag_search();
+        f_search2 = new Frag_search();
         f_loan = new Frag_loan();
         setFrag(0); //시작 fragment 화면 지정
     }
@@ -166,7 +161,7 @@ public class MainActivity extends AppCompatActivity{
         Log.v("onResume", "onResume");
         /* PendingIntent : NFC가 감지되면 Intent를 생성(특정시점(나중에) Intent 생성)
         FLAG_ACTIVITY_SINGLE_TOP : 중복 호출 방지(스택에 기존의 같은게 있다면 새로 호출X) */
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), PendingIntent.FLAG_MUTABLE);
         IntentFilter filter = new IntentFilter();   // IntenFilter 생성
         filter.addAction(NfcAdapter.ACTION_TAG_DISCOVERED); // Intent필터 지정(NFC 스캔 됐을 때로)
         filter.addAction(NfcAdapter.ACTION_NDEF_DISCOVERED);
@@ -178,7 +173,6 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onNewIntent(Intent intent) {     // NFC 구현시 onResume()과 같은 곳에 구현하는게 좋음
         super.onNewIntent(intent);
-        Log.v("MainActivity", "MainActivity");
         f_loan = (Frag_loan) getSupportFragmentManager().findFragmentByTag("tag_loan"); // getSupportFragmentManager(): 프래그먼트 매니저에 접근
         if (f_loan != null) {
             f_loan.handleIntent(intent);
@@ -187,26 +181,26 @@ public class MainActivity extends AppCompatActivity{
 
     //fragment 교체 함수
     //fragment 사용시 필수인듯 함...암튼 써야댐
-    private void setFrag(int n){
+    public void setFrag(int n){
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
         switch (n){
-            case 0:
+            case 0:     // 홈 화면
                 ft.replace(R.id.main_frame, f_home);
                 ft.commit();
                 break;
-            case 1:
+            case 1:     // 맵 화면
                 ft.replace(R.id.main_frame, f_map);
                 ft.commit();
                 break;
-            case 2:
+            case 2:     // 대여정보 화면
                 ft.replace(R.id.main_frame, f_rentalInfo);
+                ft.addToBackStack(null);
                 ft.commit();
                 break;
-            case 3:
+            case 3:     // 검색 화면
                 if(SearchCount == 1){
-                    System.out.println("현재 서치프래그먼트");
-                    ft.replace(R.id.main_frame, fs2);
+                    ft.replace(R.id.main_frame, f_search2);
                     SearchCount--;
                 }
                 else{
@@ -215,10 +209,16 @@ public class MainActivity extends AppCompatActivity{
                 }
                 ft.commit();
                 break;
-            case 4:
+            case 4:     // 대출 화면
                 ft.replace(R.id.main_frame, f_loan, "tag_loan");
                 ft.commit();
                 break;
+
+            case 5:     // 모든 대여 기록 화면
+                f_allRentalInfo = new Frag_AllRentalInfo();
+                ft.replace(R.id.main_frame, f_allRentalInfo);
+                ft.addToBackStack(null);
+                ft.commit();
         }
     }
 
@@ -234,27 +234,16 @@ public class MainActivity extends AppCompatActivity{
                     jsonArray = new JSONArray(jdata);//현 Jsp서버는 JsonArray형태 이므로 넘겨받은 String을 Array형식으로 저장
                     for(int i=0; i<jsonArray.length(); i++){//넘겨받은 Array를 모두 추출
                         JSONObject jsonObject = jsonArray.getJSONObject(i);//Array안에 Key:Values형태의 Object로 추출
-                        imageUrl = jsonObject.getString("도서이미지");//책 이미지 URL 저장
-                        tm = jsonObject.getString("제목");           //책 제목 저장
-                        String author = jsonObject.getString("저자");//책 저자 저장
-                        String publisher = jsonObject.getString("출판사");//출판사 저장
-//                        if(jsonObject.getString("층").equals("0")){//책장에 책이 없으면 "층"데이터에 0이 들어감
-//                            location = "대여중";                         //책이 없으면 "위치"를 대여중으로 실시간 표시함
-//                        }
-//                        else{//책장에 책이 존재하면 정상적으로 위치를 출력
-//                            location = jsonObject.getString("층") +"층 "+ jsonObject.getString("줄") +"줄 "+ jsonObject.getString("칸")+"칸";
-//                        }
-                        String summary = jsonObject.getString("도서소개");//책 소개 저장
-                        /*URL url1 = new URL(imageUrl);
-                        HttpURLConnection conn = (HttpURLConnection)url1.openConnection();//책 URL로 Http 통신
-                        conn.setDoInput(true); // 서버로부터 응답 수신
-                        conn.connect(); //연결된 곳에 접속할 때 (connect() 호출해야 실제 통신 가능함)
-                        InputStream is = conn.getInputStream(); //inputStream 값 가져오기
-                        mybitmap = BitmapFactory.decodeStream(is);//이미지 Stream을 비트맵으로 저장*/
-                        bookDataArrayList.add(new BookData(imageUrl,tm,author,publisher,summary));//값들을 List에 저장
+                        imageUrl = jsonObject.getString("도서이미지");   // 책 이미지 URL 저장
+                        bookTitle = jsonObject.getString("제목");           // 책 제목 저장
+                        String author = jsonObject.getString("저자");     // 책 저자 저장
+                        String publisher = jsonObject.getString("출판사");     // 출판사 저장
+                        String isbn = jsonObject.getString("ISBN");     // ISBN 저장
+                        String summary = jsonObject.getString("도서소개");  // 책 소개 저장
+                        bookDataArrayList.add(new BookData(imageUrl, bookTitle,author,publisher,isbn,summary));//값들을 List에 저장
                     }
                     f_search.setData(bookDataArrayList);//검색화면으로 데이터 List를 전달
-                    fs2.setData(bookDataArrayList);
+                    f_search2.setData(bookDataArrayList);
                     setFrag(3);//App Ui 화면 전환
 
                 } catch (JSONException | NullPointerException e) {

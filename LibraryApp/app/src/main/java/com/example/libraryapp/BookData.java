@@ -11,15 +11,15 @@ public class BookData implements Serializable {
         public String title;
         String author;
         String publisher;
-//        String location;  // 불필요
+        String isbn;
         String summary;
 
-        public BookData(String drawableId, String price,String author,String publisher,String summary){
+        public BookData(String drawableId, String price,String author,String publisher,String isbn,String summary){
             this.drawableId = drawableId;
             this.title = price;
             this.author = author;
             this.publisher = publisher;
-//            this.location = location;     // 불필요
+            this.isbn = isbn;
             this.summary = summary;
         }
 

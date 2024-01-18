@@ -22,7 +22,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class LoginActivity extends AppCompatActivity {
-
     private Button login_btn;   // 로그인 버튼
     private EditText et_id, et_pw;
     protected String id, pw;
@@ -50,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
                         ServerConnector.ConnectionParams params = new ServerConnector.ConnectionParams();   // ConnectionParams 타입 변수 생성 및 선언
                         params.setOption(1).setId(id).setPw(pw);  // 매개변수로 jsp옵션, id, pw 넘김
                         login = ServerConnector.connect(params); // Option 1 = 로그인
+//                        login = "1"; // Option 1 = 로그인
                         if(login.equals("1")){
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);    // 로그인 버튼 클릭시 메인 액티비티로 이동(서버랑 통신해야함)
                             startActivity(intent);
