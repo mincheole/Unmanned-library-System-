@@ -14,23 +14,13 @@
 
 <%
 Connection conn = null;
-Statement stmt = null;
-Statement stmt1 = null;
 CallableStatement cstmt = null;
-CallableStatement cstmt1 = null;
-String query = null;
-String query1 = null;
-String a = null;
-String b = null;
 String booknumber=null;
 ResultSet rs = null;
-ResultSet rs1 = null;
-ResultSet rs2 = null;
 JSONArray jsonArray = new JSONArray();
 System.out.println("Create bookdb obj");
 String keyword = request.getParameter("search_keyword");
 String search_mode = request.getParameter("search_mode"); // mode의 값이 1 = 제목, 2면 저자
-search_mode = "1";
 try {
 	Class.forName("oracle.jdbc.driver.OracleDriver"); // 오라클 드라이버 적재
 	System.out.println("DB Driver On");
@@ -62,9 +52,7 @@ try {
 } finally{
 	try {
 		if (rs != null)	rs.close();
-		if (rs1 != null) rs1.close();
 		if (cstmt != null) cstmt.close();
-		if (stmt != null) stmt.close();
 		if (conn != null)	conn.close();
 	} catch (Exception e) {
 		e.printStackTrace();

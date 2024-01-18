@@ -19,14 +19,13 @@ PreparedStatement pstmt = null;
 PreparedStatement pstmt1 = null;
 PreparedStatement pstmt2 = null;
 System.out.println("Create rfid obj");
-arduino_rfid = request.getParameter("arduino_rfid"); //리더기에서 넘긴 정보 받음
-System.out.println("rifd = " + arduino_rfid);
+arduino_rfid = request.getParameter("arduino_rfid").toUpperCase(); //리더기에서 넘긴 정보 받음
+System.out.println("rfid = " + arduino_rfid);
 out.println(arduino_rfid);
 ResultSet rs = null;
 ResultSet rs1 =null;
 int count =0;
 System.out.println("rfid jsp end");
-
 try {
 	Class.forName("oracle.jdbc.driver.OracleDriver"); // 오라클 드라이버 적재
 	System.out.println("DB Driver On");
@@ -45,13 +44,13 @@ try {
 	while(rs1.next()) {
 		past_bookisbn=rs1.getString(1);
 	}
-	pstmt2 = conn.prepareCall("Delete From 책장 Where 꽂힌도서 ="+"'"+bookisbn+"'");
-	pstmt2.executeUpdate();
+	//pstmt2 = conn.prepareCall("Update From 책장 Where 꽂힌도서 ="+"'"+bookisbn+"'");
+	//pstmt2.executeUpdate();
 	pstmt = conn.prepareCall("Update 책장 set 꽂힌도서 = (?) where 책장번호 = 'bs1'");
 	//pstmt1 = conn.prepareCall("Update 도서 set 위치추적 = '0' where ISBN ="+"'"+past_bookisbn+"'");
 	pstmt.setString(1, bookisbn);
 	count = pstmt.executeUpdate();
-	pstmt1.executeUpdate();
+	pstmt.executeUpdate();
 	if (count==1){
 		System.out.println("clear");
 		out.println(bookisbn);

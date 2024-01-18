@@ -58,10 +58,10 @@ try {
 	e.printStackTrace();
 } finally{
 	try {
-		if (rs1 != null)	rs1.close();
-		if (rs2 != null)	rs2.close();
+		if (rs1 != null) rs1.close();
+		if (rs2 != null) rs2.close();
 		if (stmt != null) stmt.close();
-		if (conn != null)	conn.close();
+		if (conn != null) conn.close();
 	} catch (Exception e) {
 		e.printStackTrace();
 	}

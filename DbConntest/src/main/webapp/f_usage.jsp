@@ -15,17 +15,15 @@
 Connection conn = null;
 String phone_rfid=null;
 String user_id = null;
+String use_mode = null;
 CallableStatement cstmt = null;
-ResultSet rs =null;
 System.out.println("Create usage obj");
 phone_rfid = request.getParameter("phone_rfid"); 	//리더기에서 넘긴 정보 받음
 user_id = request.getParameter("userid"); 			//리더기에서 넘긴 정보 받음
-String use_mode = request.getParameter("use_mode");
-//use_mode = "2";
-System.out.println("rfid = " + phone_rfid);
-System.out.println("id = " + user_id);
-System.out.println("mode = " + use_mode);
-
+use_mode = request.getParameter("use_mode");
+System.out.println(phone_rfid);
+System.out.println(user_id);
+System.out.println(use_mode);
 
 try{
 	Class.forName("oracle.jdbc.driver.OracleDriver"); 	// 오라클 드라이버 적재
@@ -46,7 +44,8 @@ try{
 	e.printStackTrace();
 } finally {
 	try {
-	//	System.out.println("usage jsp end");
+		if (conn != null) conn.close();
+		if (cstmt != null) cstmt.close();
 	}
 	 catch (Exception e) {
 		e.printStackTrace();

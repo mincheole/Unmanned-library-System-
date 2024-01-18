@@ -42,12 +42,9 @@ try {
 	e.printStackTrace();
 } finally {
 	try {
-		if (rs != null)
-	rs.close();
-		if (cstmt != null)
-	cstmt.close();
-		if (conn != null)
-	conn.close();
+		if (rs != null)	rs.close();
+		if (cstmt != null)	cstmt.close();
+		if (conn != null)	conn.close();
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
